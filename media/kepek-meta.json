@@ -1,0 +1,535 @@
+{
+ "kantar-onyx": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "kantar-onyx.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 127
+   },
+   {
+    "f": "kantar-onyx-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 59
+   }
+  ]
+ },
+ "kantar-rose": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "kantar-rose.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 163
+   },
+   {
+    "f": "kantar-rose-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 69
+   }
+  ]
+ },
+ "nyereg-onyx": {
+  "w": 1509,
+  "h": 1042,
+  "ar": 1.4482,
+  "files": [
+   {
+    "f": "nyereg-onyx.webp",
+    "w": 1509,
+    "h": 1042,
+    "kb": 355
+   },
+   {
+    "f": "nyereg-onyx-800.webp",
+    "w": 800,
+    "h": 552,
+    "kb": 108
+   }
+  ]
+ },
+ "nyereg-pearl": {
+  "w": 1448,
+  "h": 1086,
+  "ar": 1.3333,
+  "files": [
+   {
+    "f": "nyereg-pearl.webp",
+    "w": 1448,
+    "h": 1086,
+    "kb": 206
+   },
+   {
+    "f": "nyereg-pearl-800.webp",
+    "w": 800,
+    "h": 600,
+    "kb": 67
+   }
+  ]
+ },
+ "nyereg-rose": {
+  "w": 1509,
+  "h": 1042,
+  "ar": 1.4482,
+  "files": [
+   {
+    "f": "nyereg-rose.webp",
+    "w": 1509,
+    "h": 1042,
+    "kb": 325
+   },
+   {
+    "f": "nyereg-rose-800.webp",
+    "w": 800,
+    "h": 552,
+    "kb": 100
+   }
+  ]
+ },
+ "fulvedo-onyx": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "fulvedo-onyx.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 156
+   },
+   {
+    "f": "fulvedo-onyx-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 65
+   }
+  ]
+ },
+ "fulvedo-pearl": {
+  "w": 1086,
+  "h": 1448,
+  "ar": 0.75,
+  "files": [
+   {
+    "f": "fulvedo-pearl.webp",
+    "w": 1086,
+    "h": 1448,
+    "kb": 187
+   },
+   {
+    "f": "fulvedo-pearl-800.webp",
+    "w": 800,
+    "h": 1067,
+    "kb": 119
+   }
+  ]
+ },
+ "fulvedo-pearl-2": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "fulvedo-pearl-2.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 235
+   },
+   {
+    "f": "fulvedo-pearl-2-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 105
+   }
+  ]
+ },
+ "fulvedo-rose": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "fulvedo-rose.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 276
+   },
+   {
+    "f": "fulvedo-rose-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 112
+   }
+  ]
+ },
+ "labvedo-onyx": {
+  "w": 1210,
+  "h": 1300,
+  "ar": 0.9308,
+  "files": [
+   {
+    "f": "labvedo-onyx.webp",
+    "w": 1210,
+    "h": 1300,
+    "kb": 179
+   },
+   {
+    "f": "labvedo-onyx-800.webp",
+    "w": 800,
+    "h": 860,
+    "kb": 90
+   }
+  ]
+ },
+ "labvedo-onyx-2": {
+  "w": 464,
+  "h": 558,
+  "ar": 0.8315,
+  "files": [
+   {
+    "f": "labvedo-onyx-2.webp",
+    "w": 464,
+    "h": 558,
+    "kb": 21
+   }
+  ]
+ },
+ "labvedo-onyx-3": {
+  "w": 411,
+  "h": 498,
+  "ar": 0.8253,
+  "files": [
+   {
+    "f": "labvedo-onyx-3.webp",
+    "w": 411,
+    "h": 498,
+    "kb": 28
+   }
+  ]
+ },
+ "labvedo-rose": {
+  "w": 1086,
+  "h": 1448,
+  "ar": 0.75,
+  "files": [
+   {
+    "f": "labvedo-rose.webp",
+    "w": 1086,
+    "h": 1448,
+    "kb": 172
+   },
+   {
+    "f": "labvedo-rose-800.webp",
+    "w": 800,
+    "h": 1067,
+    "kb": 103
+   }
+  ]
+ },
+ "pataharang-onyx": {
+  "w": 486,
+  "h": 492,
+  "ar": 0.9878,
+  "files": [
+   {
+    "f": "pataharang-onyx.webp",
+    "w": 486,
+    "h": 492,
+    "kb": 17
+   }
+  ]
+ },
+ "pataharang-onyx-2": {
+  "w": 438,
+  "h": 545,
+  "ar": 0.8037,
+  "files": [
+   {
+    "f": "pataharang-onyx-2.webp",
+    "w": 438,
+    "h": 545,
+    "kb": 13
+   }
+  ]
+ },
+ "pataharang-pearl": {
+  "w": 446,
+  "h": 540,
+  "ar": 0.8259,
+  "files": [
+   {
+    "f": "pataharang-pearl.webp",
+    "w": 446,
+    "h": 540,
+    "kb": 21
+   }
+  ]
+ },
+ "pataharang-pearl-2": {
+  "w": 859,
+  "h": 553,
+  "ar": 1.5533,
+  "files": [
+   {
+    "f": "pataharang-pearl-2.webp",
+    "w": 859,
+    "h": 553,
+    "kb": 50
+   },
+   {
+    "f": "pataharang-pearl-2-800.webp",
+    "w": 800,
+    "h": 515,
+    "kb": 44
+   }
+  ]
+ },
+ "pataharang-rose": {
+  "w": 1448,
+  "h": 1086,
+  "ar": 1.3333,
+  "files": [
+   {
+    "f": "pataharang-rose.webp",
+    "w": 1448,
+    "h": 1086,
+    "kb": 185
+   },
+   {
+    "f": "pataharang-rose-800.webp",
+    "w": 800,
+    "h": 600,
+    "kb": 70
+   }
+  ]
+ },
+ "pataharang-rose-2": {
+  "w": 1402,
+  "h": 1122,
+  "ar": 1.2496,
+  "files": [
+   {
+    "f": "pataharang-rose-2.webp",
+    "w": 1402,
+    "h": 1122,
+    "kb": 245
+   },
+   {
+    "f": "pataharang-rose-2-800.webp",
+    "w": 800,
+    "h": 640,
+    "kb": 95
+   }
+  ]
+ },
+ "kollekcio-nyereg": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "kollekcio-nyereg.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 167
+   },
+   {
+    "f": "kollekcio-nyereg-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 56
+   }
+  ]
+ },
+ "kollekcio-fulvedo": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "kollekcio-fulvedo.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 177
+   },
+   {
+    "f": "kollekcio-fulvedo-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 63
+   }
+  ]
+ },
+ "kollekcio-kantar": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "kollekcio-kantar.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 174
+   },
+   {
+    "f": "kollekcio-kantar-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 70
+   }
+  ]
+ },
+ "kollekcio-labvedo": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "kollekcio-labvedo.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 202
+   },
+   {
+    "f": "kollekcio-labvedo-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 70
+   }
+  ]
+ },
+ "szett-rose": {
+  "w": 1280,
+  "h": 960,
+  "ar": 1.3333,
+  "files": [
+   {
+    "f": "szett-rose.webp",
+    "w": 1280,
+    "h": 960,
+    "kb": 239
+   },
+   {
+    "f": "szett-rose-800.webp",
+    "w": 800,
+    "h": 600,
+    "kb": 109
+   }
+  ]
+ },
+ "szem": {
+  "w": 2400,
+  "h": 1350,
+  "ar": 1.7778,
+  "files": [
+   {
+    "f": "szem.webp",
+    "w": 2400,
+    "h": 1350,
+    "kb": 622
+   },
+   {
+    "f": "szem-1400.webp",
+    "w": 1400,
+    "h": 788,
+    "kb": 231
+   },
+   {
+    "f": "szem-800.webp",
+    "w": 800,
+    "h": 450,
+    "kb": 79
+   }
+  ]
+ },
+ "istallo": {
+  "w": 2400,
+  "h": 3000,
+  "ar": 0.8,
+  "files": [
+   {
+    "f": "istallo.webp",
+    "w": 1600,
+    "h": 2000,
+    "kb": 163
+   },
+   {
+    "f": "istallo-1400.webp",
+    "w": 1400,
+    "h": 1750,
+    "kb": 133
+   },
+   {
+    "f": "istallo-800.webp",
+    "w": 800,
+    "h": 1000,
+    "kb": 48
+   }
+  ]
+ },
+ "gesztenye": {
+  "w": 2400,
+  "h": 3600,
+  "ar": 0.6667,
+  "files": [
+   {
+    "f": "gesztenye.webp",
+    "w": 1400,
+    "h": 2100,
+    "kb": 212
+   },
+   {
+    "f": "gesztenye-1400.webp",
+    "w": 1400,
+    "h": 2100,
+    "kb": 212
+   },
+   {
+    "f": "gesztenye-800.webp",
+    "w": 800,
+    "h": 1200,
+    "kb": 99
+   }
+  ]
+ },
+ "logo-kor-fekete": {
+  "w": 1254,
+  "h": 1254,
+  "ar": 1.0,
+  "files": [
+   {
+    "f": "logo-kor-fekete.webp",
+    "w": 900,
+    "h": 900,
+    "kb": 31
+   },
+   {
+    "f": "logo-kor-fekete-400.webp",
+    "w": 400,
+    "h": 400,
+    "kb": 12
+   }
+  ]
+ },
+ "logo-feher": {
+  "w": 1254,
+  "h": 1254,
+  "ar": 1.0,
+  "files": [
+   {
+    "f": "logo-feher.webp",
+    "w": 900,
+    "h": 900,
+    "kb": 21
+   }
+  ]
+ }
+}
