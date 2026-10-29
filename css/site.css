@@ -785,7 +785,8 @@ body.nav-hidden{--stick:0px}
 .soc__a{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line-2);color:var(--fg);transition:color .3s,border-color .3s,background-color .3s}
 .soc__a .icon{width:20px;height:20px}
 .soc__a:hover{color:var(--accent);border-color:var(--accent)}
-.foot__soc{margin-top:24px}
+.foot__soc{margin-top:24px;align-items:center}
+.foot .soc li+li{margin-top:0}
 .foot .soc__a{border-color:rgba(247,242,234,.34);color:var(--fg)}
 .foot .soc__a:hover{background:var(--fg);border-color:var(--fg);color:var(--wine)}
 .ct__soc{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}

@@ -16,7 +16,7 @@ const ICONS = (function () {
 })();
 const LINE = ICONS.GWK_ICONS_LINE;
 const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'media/kepek-meta.json'), 'utf8'));
-const V = '19'; // cache-bust: iterációnként léptetni
+const V = '20'; // cache-bust: iterációnként léptetni
 
 const HU = I.hu;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
