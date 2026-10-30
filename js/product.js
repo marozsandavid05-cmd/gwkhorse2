@@ -22,16 +22,31 @@
     $('#soon').hidden = arr.length > 0;
     $('#colorName').textContent = G.cap(st.color);
     $$('.cbtn').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-color') === st.color)); });
+    stock();
     G.queueRefresh();
+  }
+  /* készlet: elfogyott színnél a Kosárba helyén a „Szólj, ha újra van” blokk; más színre váltva visszajön */
+  function stock() {
+    var out = D.isOut(p, st.color), C = G.cap(st.color);
+    $('#buy').hidden = out; $('#notify').hidden = !out; $('#colorOut').hidden = !out;
+    $$('.cbtn').forEach(function (b) {
+      var c = b.getAttribute('data-color'), o = D.isOut(p, c);
+      b.classList.toggle('is-out', o);
+      b.setAttribute('aria-label', o ? G.t('stock.outAria', { c: G.cap(c) }) : G.cap(c));
+    });
+    var f = $('#subN');
+    f.setAttribute('data-notify-c', C); f.setAttribute('data-notify-s', st.size);
+    $('#notifyP').textContent = G.t('notify.p', { p: p.name[G.lang()], c: C });
+    var m = f.querySelector('.sub__msg'); if (m && !out) { m.className = 'sub__msg'; m.textContent = ''; }
   }
   function sizes() { $$('.sbtn').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-size') === st.size)); }); }
 
   root.addEventListener('click', function (e) {
     var c = e.target.closest('.cbtn'); if (c) { st.color = c.getAttribute('data-color'); gallery(); return; }
-    var s = e.target.closest('.sbtn'); if (s) { st.size = s.getAttribute('data-size'); sizes(); return; }
+    var s = e.target.closest('.sbtn'); if (s) { st.size = s.getAttribute('data-size'); sizes(); stock(); return; }
     var qb = e.target.closest('[data-q]'); if (qb) { st.qty = Math.max(1, Math.min(20, st.qty + (+qb.getAttribute('data-q')))); $('#qty').textContent = st.qty; return; }
     if (e.target.closest('#add')) {
-      G.cart.add(p.id, st.color, st.size, st.qty);
+      if (!G.cart.add(p.id, st.color, st.size, st.qty)) return; // elfogyott szín: nem kerül kosárba
       G.toast(G.t('toast.added', { p: p.name[G.lang()] + ' (' + G.cap(st.color) + ')' }));
       setTimeout(G.openCart, 380);
     }

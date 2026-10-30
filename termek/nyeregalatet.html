@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" href="../media/logo/apple-touch-icon.png">
 <script>document.documentElement.classList.add('js');window.GWK_BASE='../';try{if(localStorage.getItem('gwk-lang')==='en'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1400)}}catch(e){}</script>
 <style>.i18n-wait body{opacity:0}</style>
-<link rel="stylesheet" href="../js/vendor/lenis.css?v=20">
-<link rel="stylesheet" href="../css/site.css?v=20">
+<link rel="stylesheet" href="../js/vendor/lenis.css?v=22">
+<link rel="stylesheet" href="../css/site.css?v=22">
 
 </head>
 <body class="solid" data-page="product">
@@ -46,13 +46,24 @@
     <h1 class="pdp__name"><span data-p="nyeregalatet" data-pf="name">Evening Star nyeregalátét</span></h1>
     <p class="pdp__price"><span class="" data-price="32900" data-per="db">32 900 Ft</span></p>
     <p class="pdp__lead" data-p="nyeregalatet" data-pf="lead">Fénylő anyag, letisztult steppelés, vastag és puha párnázás a mindennapokra és a különleges alkalmakra.</p>
-    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">Szín</span><b id="colorName">Onyx</b></p><div class="opt__row" role="group" aria-label="Szín"><button type="button" class="cbtn" data-color="onyx" aria-pressed="true" aria-label="Onyx"><i class="sw sw--onyx" aria-hidden="true"></i></button><button type="button" class="cbtn" data-color="pearl" aria-pressed="false" aria-label="Pearl"><i class="sw sw--pearl" aria-hidden="true"></i></button><button type="button" class="cbtn" data-color="rose" aria-pressed="false" aria-label="Rose"><i class="sw sw--rose" aria-hidden="true"></i></button></div>
+    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">Szín</span><b id="colorName">Onyx</b><span class="opt__out" id="colorOut" data-i18n="stock.out" hidden>Elfogyott</span></p><div class="opt__row" role="group" aria-label="Szín"><button type="button" class="cbtn" data-color="onyx" aria-pressed="true" aria-label="Onyx"><i class="sw sw--onyx" aria-hidden="true"></i></button><button type="button" class="cbtn" data-color="pearl" aria-pressed="false" aria-label="Pearl"><i class="sw sw--pearl" aria-hidden="true"></i></button><button type="button" class="cbtn" data-color="rose" aria-pressed="false" aria-label="Rose"><i class="sw sw--rose" aria-hidden="true"></i></button></div>
       <p class="pdp__soon" id="soon" hidden data-i18n="pdp.soon">Ehhez a színhez hamarosan érkezik a fotó.</p></div>
     <div class="opt"><p class="opt__l"><span data-i18n="pdp.size">Méret</span></p><div class="opt__row" role="group" aria-label="Méret"><button type="button" class="sbtn" data-size="pony" aria-pressed="true" data-i18n="size.pony">Póni</button><button type="button" class="sbtn" data-size="full" aria-pressed="false" data-i18n="size.full">Full</button></div></div>
-    <div class="buy">
+    <div class="buy" id="buy">
       <div class="qty"><button type="button" data-q="-1" data-i18n-attr="aria-label:pdp.dec" aria-label="Kevesebb"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"/></svg></button><output id="qty" aria-live="polite">1</output><button type="button" data-q="1" data-i18n-attr="aria-label:pdp.inc" aria-label="Több"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"/></svg></button></div>
       <button type="button" class="btn btn--solid" id="add"><span data-i18n="pdp.add">Kosárba</span><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M216,66H174V64a46,46,0,0,0-92,0v2H40A14,14,0,0,0,26,80V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V80A14,14,0,0,0,216,66ZM94,64a34,34,0,0,1,68,0v2H94ZM218,200a2,2,0,0,1-2,2H40a2,2,0,0,1-2-2V80a2,2,0,0,1,2-2H216a2,2,0,0,1,2,2Z"/></svg></button>
     </div>
+    <section class="notify" id="notify" aria-labelledby="notifyH" hidden>
+      <h2 class="notify__h" id="notifyH" data-i18n="notify.h">Szólj, ha újra van</h2>
+      <p class="notify__p" id="notifyP">Az Evening Star nyeregalátét Onyx színe most elfogyott. Írd meg az e-mail-címed, és szólunk, amint újra elérhető.</p>
+      <form class="notify__form" id="subN" data-sub="Evening Star nyeregalátét" data-notify="Evening Star nyeregalátét" data-notify-c="Onyx" data-notify-s="pony" novalidate>
+        <div class="sub__fld"><label for="subNMail" class="notify__l" data-i18n="sub.email">E-mail-cím</label><input id="subNMail" name="email" type="email" autocomplete="email" required></div>
+        <label class="chk sub__chk"><input type="checkbox" name="consent" required><span data-i18n-html="sub.consent">Elolvastam és elfogadom az <a href="../adatkezeles.html">adatkezelési tájékoztatót</a>.</span></label>
+        <input type="checkbox" name="botcheck" class="sub__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn--solid btn--block notify__btn" type="submit"><span data-i18n="notify.btn">Kérem az értesítést</span><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M224,50H32a6,6,0,0,0-6,6V192a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A6,6,0,0,0,224,50ZM208.58,62,128,135.86,47.42,62ZM216,194H40a2,2,0,0,1-2-2V69.64l86,78.78a6,6,0,0,0,8.1,0L218,69.64V192A2,2,0,0,1,216,194Z"/></svg></button>
+        <p class="sub__msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
     <ul class="pdp__notes"><li><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"/></svg><span data-i18n="pdp.n1" data-vars='{"n":"$free"}'>Ingyenes szállítás 60 000 Ft felett</span></li><li><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"/></svg><span data-i18n="pdp.n2">Az Evening Star kollekció többi darabjával összehangolva</span></li></ul>
   </div>
 </div>
@@ -106,16 +117,16 @@
   <div class="srch__res" id="srchRes"></div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"/></svg><span></span></div>
-<script defer src="../js/data/config.js?v=20"></script>
-<script defer src="../js/data/i18n.js?v=20"></script>
-<script defer src="../js/data/i18n-pages.js?v=20"></script>
-<script defer src="../js/data/products.js?v=20"></script>
-<script defer src="../js/data/icons.js?v=20"></script>
-<script defer src="../js/vendor/gsap.min.js?v=20"></script>
-<script defer src="../js/vendor/ScrollTrigger.min.js?v=20"></script>
-<script defer src="../js/vendor/lenis.min.js?v=20"></script>
-<script defer src="../js/site.js?v=20"></script>
-<script defer src="../js/subscribe.js?v=20"></script>
-<script defer src="../js/product.js?v=20"></script>
+<script defer src="../js/data/config.js?v=22"></script>
+<script defer src="../js/data/i18n.js?v=22"></script>
+<script defer src="../js/data/i18n-pages.js?v=22"></script>
+<script defer src="../js/data/products.js?v=22"></script>
+<script defer src="../js/data/icons.js?v=22"></script>
+<script defer src="../js/vendor/gsap.min.js?v=22"></script>
+<script defer src="../js/vendor/ScrollTrigger.min.js?v=22"></script>
+<script defer src="../js/vendor/lenis.min.js?v=22"></script>
+<script defer src="../js/site.js?v=22"></script>
+<script defer src="../js/subscribe.js?v=22"></script>
+<script defer src="../js/product.js?v=22"></script>
 </body>
 </html>

@@ -41,10 +41,15 @@
       if (form.botcheck && form.botcheck.checked) return; // robot: csendben eldobjuk
       if (!hasKey) { msg(form, 'err', t('sub.off', { mail: C.email })); return; }
 
+      // TODO backend (Caesar): feliratkozók adatbázisba, automatikus levél a készlet visszaállításakor
       var product = form.getAttribute('data-sub') || t('sub.all');
+      var notify = form.hasAttribute('data-notify'), color = form.getAttribute('data-notify-c') || '';
       var payload = {
         access_key: ACCESS_KEY,
-        subject: t('sub.subject', { p: product }),
+        subject: notify ? t('notify.subject', { p: product, c: color }) : t('sub.subject', { p: product }),
+        tipus: notify ? 'Szólj, ha újra van' : 'Feliratkozás új termékre',
+        szin: notify ? color : '',
+        meret: notify ? (form.getAttribute('data-notify-s') || '') : '',
         from_name: 'GWK Horse webshop',
         email: v,
         termek: product,
@@ -56,7 +61,7 @@
       fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j && j.success, j: j }; }); })
         .then(function (res) {
-          if (res.ok) { msg(form, 'ok', t('sub.ok')); form.reset(); }
+          if (res.ok) { msg(form, 'ok', notify ? t('notify.ok', { c: color }) : t('sub.ok')); form.reset(); }
           else msg(form, 'err', t('sub.fail', { mail: C.email }));
         })
         .catch(function () { msg(form, 'err', t('sub.fail', { mail: C.email })); })

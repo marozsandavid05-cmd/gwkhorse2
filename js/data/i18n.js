@@ -92,7 +92,7 @@
 
       'st.title': 'A GWK története · GWK Horse',
       'st.desc': 'A GWK Horse története: tisztelgés egy édesapa emléke és mindaz előtt, amit a lovak tanítottak.',
-      'st.hero.alt': 'Lovak legelnek a ködös hajnali legelőn, a kerítés mögött egy magányos tölgy', 'kc.kicker': 'Az új kollekció', 'kc.colors': 'Három színvilág',
+      'st.hero.alt': 'Szürke ló kantárral kihajol az istállóajtón, meleg lámpafényben', 'kc.kicker': 'Az új kollekció', 'kc.colors': 'Három színvilág',
       'st.h1a': 'Ahogyan', 'st.h1b': 'én', 'st.h1c': 'megéltem',
       'st.founder': 'Glózerné Wágner Krisztina', 'st.role': 'A GWK Horse alapítója',
       'st.p1': 'A GWK számomra nem egy márka, hanem egy történet, amely egy nagyon személyes úton indult el. A lovak mindig részei voltak az életemnek, de igazán akkor kerültem vissza hozzájuk, amikor édesapámtól megörököltem őket. Velük együtt nemcsak a lovakat kaptam meg, hanem mindazt az emléket, értékrendet és szeretetet is, amit ő hagyott rám.',
@@ -174,7 +174,13 @@
       'foot.aszf': 'ÁSZF', 'foot.adat': 'Adatkezelés', 'foot.imp': 'Impresszum',
       'foot.demo': 'Bemutató változat: az árak minta árak, a fizetés nincs bekötve.',
       'foot.copy': '© {y} GWK Horse',
-      'toast.added': '{p} a kosárban'
+      'toast.added': '{p} a kosárban',
+      'stock.out': 'Elfogyott', 'stock.outAria': '{c}, elfogyott',
+      'notify.h': 'Szólj, ha újra van',
+      'notify.p': 'Az {p} {c} színe most elfogyott. Írd meg az e-mail-címed, és szólunk, amint újra elérhető.',
+      'notify.btn': 'Kérem az értesítést',
+      'notify.ok': 'Köszönjük, szólunk, amint a {c} szín újra elérhető.',
+      'notify.subject': 'Szólj, ha újra van: {p} · {c}'
     },
 
     en: {
@@ -266,7 +272,7 @@
 
       'st.title': 'The GWK story · GWK Horse',
       'st.desc': 'The story of GWK Horse: a tribute to a father\u2019s memory and to everything the horses have taught.',
-      'st.hero.alt': 'Horses grazing in a misty pasture at dawn, a lone oak behind the fence', 'kc.kicker': 'The new collection', 'kc.colors': 'Three shades',
+      'st.hero.alt': 'A grey horse in a bridle leans out of the stable door in warm lamplight', 'kc.kicker': 'The new collection', 'kc.colors': 'Three shades',
       'st.h1a': 'As', 'st.h1b': 'I', 'st.h1c': 'lived it',
       'st.founder': 'Krisztina Glózerné Wágner', 'st.role': 'Founder of GWK Horse',
       'st.p1': 'GWK is more than a brand to me. It is a story that began on a deeply personal journey. Horses have always been a part of my life, but I truly found my way back to them when I inherited them from my father. Along with the horses, I inherited more than just a love for them. I inherited memories, values, and a sense of connection that he left behind.',
@@ -348,7 +354,13 @@
       'foot.aszf': 'Terms', 'foot.adat': 'Privacy', 'foot.imp': 'Imprint',
       'foot.demo': 'Demo version: prices are sample prices and payment is not connected.',
       'foot.copy': '© {y} GWK Horse',
-      'toast.added': '{p} is in your bag'
+      'toast.added': '{p} is in your bag',
+      'stock.out': 'Sold out', 'stock.outAria': '{c}, sold out',
+      'notify.h': 'Tell me when it is back',
+      'notify.p': 'The {c} colour of the {p} is sold out right now. Leave your email address and we will let you know as soon as it is back.',
+      'notify.btn': 'Notify me',
+      'notify.ok': 'Thank you, we will let you know as soon as {c} is back.',
+      'notify.subject': 'Back in stock request: {p} · {c}'
     }
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = I18N;

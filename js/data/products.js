@@ -21,6 +21,9 @@
         onyx: [img('kantar-onyx', 1402, 1122, true)],
         rose: [img('kantar-rose', 1402, 1122, true)]
       },
+      // készlet színenként: elfogyott = true esetén a termékoldalon „Szólj, ha újra van” jön a Kosárba gomb helyén.
+      // BEMUTATÓ: a Rose kantár elfogyottnak jelölve (David példája). Élesben az admin állítja (Caesar backend).
+      stock: { onyx: { elfogyott: false }, rose: { elfogyott: true } },
       name: { hu: 'Evening Star kantár', en: 'Evening Star Bridle' },
       type: { hu: 'Kantár', en: 'Bridle' },
       lead: {
@@ -52,6 +55,7 @@
         pearl: [img('nyereg-pearl', 1448, 1086, true)],
         rose: [img('nyereg-rose', 1509, 1042, true)]
       },
+      stock: { onyx: { elfogyott: false }, pearl: { elfogyott: false }, rose: { elfogyott: false } },
       name: { hu: 'Evening Star nyeregalátét', en: 'Evening Star Saddle Pad' },
       type: { hu: 'Nyeregalátét', en: 'Saddle pad' },
       lead: {
@@ -81,6 +85,7 @@
         pearl: [img('fulvedo-pearl', 1086, 1448, true), img('fulvedo-pearl-2', 1402, 1122, true)],
         rose: [img('fulvedo-rose', 1402, 1122, true)]
       },
+      stock: { onyx: { elfogyott: false }, pearl: { elfogyott: false }, rose: { elfogyott: false } },
       name: { hu: 'Evening Star fülvédő', en: 'Evening Star Ear Bonnet' },
       type: { hu: 'Fülvédő', en: 'Ear bonnet' },
       lead: {
@@ -112,6 +117,7 @@
         pearl: [], // az ügyféltől még nincs fotó: az oldal kiírja
         rose: [img('labvedo-rose', 1086, 1448, true)]
       },
+      stock: { onyx: { elfogyott: false }, pearl: { elfogyott: false }, rose: { elfogyott: false } },
       name: { hu: 'Evening Star lábvédő', en: 'Evening Star Brushing Boots' },
       type: { hu: 'Lábvédő', en: 'Brushing boots' },
       lead: {
@@ -143,6 +149,7 @@
         pearl: [img('pataharang-pearl', 446, 540, false), img('pataharang-pearl-2', 859, 553, true)],
         rose: [img('pataharang-rose', 1448, 1086, true), img('pataharang-rose-2', 1402, 1122, true)]
       },
+      stock: { onyx: { elfogyott: false }, pearl: { elfogyott: false }, rose: { elfogyott: false } },
       name: { hu: 'Evening Star pataharang', en: 'Evening Star Bell Boots' },
       type: { hu: 'Pataharang', en: 'Bell boots' },
       lead: {
@@ -168,6 +175,11 @@
 
   var DATA = { COLORS: COLORS, PRODUCTS: PRODUCTS, COLOR_ORDER: ['onyx', 'pearl', 'rose'] };
   DATA.byId = function (id) { for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i]; return null; };
+  // igaz, ha a termék adott színe elfogyott (a kosár, a pénztár és a termékoldal is ezt kérdezi)
+  DATA.isOut = function (id, color) {
+    var p = typeof id === 'string' ? DATA.byId(id) : id;
+    return !!(p && p.stock && p.stock[color] && p.stock[color].elfogyott);
+  };
   if (typeof module !== 'undefined' && module.exports) module.exports = DATA;
   else root.GWK_DATA = DATA;
 })(this);

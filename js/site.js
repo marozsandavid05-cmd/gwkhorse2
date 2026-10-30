@@ -90,15 +90,22 @@
 
   /* ---------------- kosár (localStorage) ---------------- */
   var KEY = C.storageKeys.cart;
-  function load() { try { var a = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  // elfogyott szín sosem marad a kosárban (régi tétel, másik fülön betett tétel): a drawer és a pénztár is ezt olvassa
+  function load() {
+    try {
+      var a = JSON.parse(localStorage.getItem(KEY) || '[]'); if (!Array.isArray(a)) return [];
+      return a.filter(function (x) { return !(D.isOut && D.isOut(x.id, x.color)); });
+    } catch (e) { return []; }
+  }
   function save(a) { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {} }
   var cart = {
     items: load,
     add: function (id, color, size, qty) {
+      if (D.isOut && D.isOut(id, color)) return false;
       var a = load(), k = id + '|' + color + '|' + size, hit = null;
       a.forEach(function (x) { if (x.k === k) hit = x; });
       if (hit) hit.qty = Math.min(20, hit.qty + qty); else a.push({ k: k, id: id, color: color, size: size, qty: qty });
-      save(a); renderCart();
+      save(a); renderCart(); return true;
     },
     set: function (k, qty) {
       var a = load().map(function (x) { if (x.k === k) x.qty = Math.max(1, Math.min(20, qty)); return x; });

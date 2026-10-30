@@ -16,7 +16,7 @@ const ICONS = (function () {
 })();
 const LINE = ICONS.GWK_ICONS_LINE;
 const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'media/kepek-meta.json'), 'utf8'));
-const V = '20'; // cache-bust: iterációnként léptetni
+const V = '22'; // cache-bust: iterációnként léptetni
 
 const HU = I.hu;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -58,7 +58,7 @@ function card(p, c, sizes) {
   return `<a class="card" href="{B}${p.page}?szin=${c}" data-type="${p.id}" data-color="${c}" data-search="${esc(search)}" data-view="${esc(tx('idx.view'))}" data-reveal>` +
     vit(im, alt, sizes, { alt2 }) +
     `<div class="card__meta"><span class="card__name">${pName(p)}</span>${priceEl(p, 'card__price')}` +
-    `<span class="card__sub">${sw(c)}<span data-i18n="color.${c}">${tx('color.' + c)}</span></span></div></a>`;
+    `<span class="card__sub">${sw(c)}<span data-i18n="color.${c}">${tx('color.' + c)}</span>${D.isOut(p, c) ? `<span class="card__out" data-i18n="stock.out">${tx('stock.out')}</span>` : ''}</span></div></a>`;
 }
 
 /* ---------------- közös részek ---------------- */
@@ -171,6 +171,23 @@ function subscribe(o) {
     <p class="sub__msg" role="status" aria-live="polite"></p>
   </form>
 </section>`;
+}
+
+/* „Szólj, ha újra van” (termékoldal, elfogyott színnél a Kosárba helyén). A js/subscribe.js küldi (data-notify).
+   Látszólagos: Web3Forms-levél a boltnak; a valódi háttér (feliratkozók adatbázisa, automatikus levél) a backenddel jön. */
+function notify(p, c, out) {
+  const C0 = c[0].toUpperCase() + c.slice(1);
+  return `<section class="notify" id="notify" aria-labelledby="notifyH"${out ? '' : ' hidden'}>
+      <h2 class="notify__h" id="notifyH" data-i18n="notify.h">${tx('notify.h')}</h2>
+      <p class="notify__p" id="notifyP">${esc(tx('notify.p', { p: p.name.hu, c: C0 }))}</p>
+      <form class="notify__form" id="subN" data-sub="${esc(p.name.hu)}" data-notify="${esc(p.name.hu)}" data-notify-c="${C0}" data-notify-s="${p.sizes[0]}" novalidate>
+        <div class="sub__fld"><label for="subNMail" class="notify__l" data-i18n="sub.email">${tx('sub.email')}</label><input id="subNMail" name="email" type="email" autocomplete="email" required></div>
+        <label class="chk sub__chk"><input type="checkbox" name="consent" required><span data-i18n-html="sub.consent">${tx('sub.consent', { B: '{B}' })}</span></label>
+        <input type="checkbox" name="botcheck" class="sub__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn--solid btn--block notify__btn" type="submit"><span data-i18n="notify.btn">${tx('notify.btn')}</span>${ico('envelope-simple')}</button>
+        <p class="sub__msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>`;
 }
 
 function scripts(extra) {
@@ -294,7 +311,9 @@ function product(p) {
   const c0 = cs[0];
   const gal = (p.colors[c0] || []).map((im, i) =>
     `<figure>${`<img src="{B}${im.src}" ${im.small ? `srcset="{B}${im.small} 800w, {B}${im.src} ${im.w}w" sizes="(max-width:960px) 86vw, 56vw"` : ''} width="${im.w}" height="${im.h}" alt="${esc(p.name.hu)}, ${c0}, ${i + 1}. fotó"${i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'}>`}</figure>`).join('');
-  const cbtns = cs.map((c, i) => `<button type="button" class="cbtn" data-color="${c}" aria-pressed="${i === 0}" aria-label="${c[0].toUpperCase() + c.slice(1)}">${sw(c)}</button>`).join('');
+  const cap = c => c[0].toUpperCase() + c.slice(1);
+  const cbtns = cs.map((c, i) => `<button type="button" class="cbtn${D.isOut(p, c) ? ' is-out' : ''}" data-color="${c}" aria-pressed="${i === 0}" aria-label="${D.isOut(p, c) ? esc(tx('stock.outAria', { c: cap(c) })) : cap(c)}">${sw(c)}</button>`).join('');
+  const out0 = D.isOut(p, c0);
   const sbtns = p.sizes.map((s, i) => `<button type="button" class="sbtn" data-size="${s}" aria-pressed="${i === 0}" data-i18n="size.${s}">${tx('size.' + s)}</button>`).join('');
   const body = p.body.hu.map(x => `<p>${esc(x)}</p>`).join('');
   const others = D.PRODUCTS.filter(x => x.id !== p.id).map(x => card(x, colorsOf(x)[0], '(max-width:960px) 46vw, 23vw')).join('');
@@ -306,13 +325,14 @@ function product(p) {
     <h1 class="pdp__name"><span data-p="${p.id}" data-pf="name">${esc(p.name.hu)}</span></h1>
     <p class="pdp__price">${priceEl(p)}</p>
     <p class="pdp__lead" data-p="${p.id}" data-pf="lead">${esc(p.lead.hu)}</p>
-    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">${tx('pdp.color')}</span><b id="colorName">${c0[0].toUpperCase() + c0.slice(1)}</b></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.color'))}">${cbtns}</div>
+    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">${tx('pdp.color')}</span><b id="colorName">${c0[0].toUpperCase() + c0.slice(1)}</b><span class="opt__out" id="colorOut" data-i18n="stock.out"${out0 ? '' : ' hidden'}>${tx('stock.out')}</span></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.color'))}">${cbtns}</div>
       <p class="pdp__soon" id="soon" hidden data-i18n="pdp.soon">${tx('pdp.soon')}</p></div>
     <div class="opt"><p class="opt__l"><span data-i18n="pdp.size">${tx('pdp.size')}</span></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.size'))}">${sbtns}</div></div>
-    <div class="buy">
+    <div class="buy" id="buy"${out0 ? ' hidden' : ''}>
       <div class="qty"><button type="button" data-q="-1" data-i18n-attr="aria-label:pdp.dec" aria-label="${esc(tx('pdp.dec'))}">${ico('minus')}</button><output id="qty" aria-live="polite">1</output><button type="button" data-q="1" data-i18n-attr="aria-label:pdp.inc" aria-label="${esc(tx('pdp.inc'))}">${ico('plus')}</button></div>
       <button type="button" class="btn btn--solid" id="add"><span data-i18n="pdp.add">${tx('pdp.add')}</span>${ico('bag-simple')}</button>
     </div>
+    ${notify(p, c0, out0)}
     <ul class="pdp__notes"><li>${ico('check')}<span data-i18n="pdp.n1" data-vars='{"n":"$free"}'>${tx('pdp.n1', { n: FREE })}</span></li><li>${ico('check')}<span data-i18n="pdp.n2">${tx('pdp.n2')}</span></li></ul>
   </div>
 </div>
@@ -397,10 +417,12 @@ function collection() {
 function story() {
   const main = `
 <section class="st-cover" aria-labelledby="stH">
-  <figure class="st-cover__img"><img src="{B}media/hangulat/tortenet-hero-1920.webp" srcset="{B}media/hangulat/tortenet-hero-1200.webp 1200w, {B}media/hangulat/tortenet-hero-1920.webp 1920w, {B}media/hangulat/tortenet-hero-2400.webp 2400w" sizes="max(100vw, 150vh)" width="2400" height="1600" alt="${esc(tx('st.hero.alt'))}" data-i18n-attr="alt:st.hero.alt" fetchpriority="high"></figure>
-  <div class="st-cover__in wrap">
-    <h1 id="stH"><span class="l1" data-i18n="st.h1a">${tx('st.h1a')}</span> <em class="l2" data-i18n="st.h1b">${tx('st.h1b')}</em> <span class="l3" data-i18n="st.h1c">${tx('st.h1c')}</span></h1>
-    <div class="st-cover__b"><img src="{B}media/logo/logo-kor-sotet-400.webp" width="400" height="400" alt="GWK Horse"><p><strong data-i18n="st.founder">${tx('st.founder')}</strong><span data-i18n="st.role">${tx('st.role')}</span></p></div>
+  <figure class="st-cover__img"><img src="{B}media/hangulat/tortenet-istallo-2000.webp" srcset="{B}media/hangulat/tortenet-istallo-1200.webp 1200w, {B}media/hangulat/tortenet-istallo-2000.webp 2000w, {B}media/hangulat/tortenet-istallo-2800.webp 2800w" sizes="max(100vw, 150vh)" width="2800" height="1867" alt="${esc(tx('st.hero.alt'))}" data-i18n-attr="alt:st.hero.alt" fetchpriority="high"></figure>
+  <div class="st-cover__in wrap grid12">
+    <div class="st-cover__txt">
+      <h1 id="stH" class="st-cover__h"><span class="l1" data-i18n="st.h1a">${tx('st.h1a')}</span> <em class="l2" data-i18n="st.h1b">${tx('st.h1b')}</em> <span class="l3" data-i18n="st.h1c">${tx('st.h1c')}</span></h1>
+      <p class="st-cover__sig"><span data-i18n="st.founder">${tx('st.founder')}</span><span data-i18n="st.role">${tx('st.role')}</span></p>
+    </div>
   </div>
 </section>
 <article class="st-story" aria-label="${esc(tx('nav.story'))}">
