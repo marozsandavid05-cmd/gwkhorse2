@@ -443,6 +443,10 @@ body.nav-hidden{--stick:0px}
    a rácsúszó lap felfelé vetett lágy árnyéka adja a mélységet. */
 .st-cover{position:sticky;top:0;z-index:0;height:100svh;min-height:620px;padding-top:var(--hdr);background:#1E140C;color:#F7F2EA;overflow:hidden;isolation:isolate}
 .st-cover ~ *{position:relative;z-index:1;background:var(--bg)}
+/* 2026-10-30 David: görgetéskor a fejléc felcsúszik, és a nyitó tetején a fejlécnek fenntartott sötét sáv üresen látszott. Elbújt fejlécnél a nyitó is felcsúszik ugyanannyival, így a kép ér a képernyő tetejéig. */
+.st-cover{transition:top .45s var(--ease)}
+body.nav-hidden .st-cover{top:calc(-1 * var(--hdr))}
+@media (prefers-reduced-motion:reduce){.st-cover{transition:none}}
 .st-cover + .st-story{box-shadow:0 -28px 48px -24px rgba(20,12,6,.55)}
 .st-cover__img{position:absolute;inset:var(--hdr) 0 0;z-index:-1;margin:0}
 .st-cover__img img{width:100%;height:100%;object-fit:cover;object-position:40% 56%}
