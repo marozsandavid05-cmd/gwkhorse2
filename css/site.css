@@ -16,28 +16,33 @@
 :root{
   /* VILÁGOS rendszer (Krisztina, 2026-10-16): tört fehér, krém, bézs alap, bordó a mély szín.
      A régi sötét nevek helyett szerep-nevek, hogy ne legyen token-csapda. */
-  --bg:#F7F2EA;             /* tört fehér: az oldal alapja */
-  --bg-2:#EFE6D9;           /* krém: sávok, drawer */
-  --bg-3:#E6D8C5;           /* bézs: bemutatkozás, panelek */
-  --surface:#EFE6D9;        /* világos felület (űrlap, pénztár lap) */
-  --surface-2:#E7DCCD;      /* vitrin-keret mögötte */
-  --fg:#2A1519;             /* bordó-tinta: minden szöveg */
-  --ink:#2A1519;
-  --accent:#7A2638;         /* burgundy: kiemelt szó, hover, aktív */
-  --wine:#4A1520;           /* mély bordó: felső sáv, lábléc */
-  --on-wine:#F7F2EA;
-  --rg:#C8906F;             /* rózsaarany: csak vonal, dísz */
-  --rg-deep:#8A5238;        /* rózsaarany szöveg világos alapon */
-  --powder:#E7C9C1;
+  /* Krisztina 2026-11-04-i végleges terve: az alap #FAEFE2 (az ő kódja), a fejléc, a történet-sáv és a lábléc fekete
+     („igazatok volt a feketében”), a kiemelés arany. A szövegszínek ehhez a krémhez mérve (WCAG): --fg 15,7:1,
+     --t-muted 11,8:1, --accent (mély arany-barna) 5,9:1 a #FAEFE2-n és 5,3:1 a #F3E4D1 sávon. */
+  --bg:#FAEFE2;             /* az oldal alapja (Krisztina) */
+  --bg-2:#F3E4D1;           /* krém sáv: Evening Star panel, drawer */
+  --bg-3:#EBD9C3;           /* bézs: panelek */
+  --surface:#F3E4D1;        /* világos felület (űrlap, pénztár lap) */
+  --surface-2:#EBDCC8;      /* vitrin-keret mögötte */
+  --fg:#1E1612;             /* meleg fekete: minden szöveg */
+  --ink:#1E1612;
+  --accent:#7A5520;         /* mély arany-barna: kiemelt szó, hover, aktív, címke */
+  --wine:#15100D;           /* a régi „mély bordó” szerep most fekete: felső sáv, lábléc, sötét panelek */
+  --black:#15100D;
+  --on-wine:#FAEFE2;
+  --gold:#C9A15E;           /* arany: csak vonal, dísz, sötét alapon */
+  --gold-l:#E2C08A;         /* világos arany: szöveg és gomb fekete alapon */
+  --rg:#C9A15E;             /* régi név, ugyanaz az arany */
+  --rg-deep:#7A5520;        /* arany szöveg világos alapon */
+  --powder:#E2C08A;
 
-  /* Olvashatóság (2026-10-19): szövegre nincs alfa. A másodlagos szöveg tömör mély bordó (--wine, 10,5:1 a
-     legsötétebb világos felületen is), a hierarchiát méret és súly adja, nem átlátszóság. */
-  --t-muted:#4A1520;
-  --t-faint:#4A1520;
-  --line:rgba(42,21,25,.14);
-  --line-2:rgba(42,21,25,.3);
-  --ink-muted:#4A1520;
-  --ink-line:rgba(42,21,25,.16);
+  /* Olvashatóság: szövegre nincs alfa, a másodlagos szöveg tömör sötét barna. */
+  --t-muted:#3B2C22;
+  --t-faint:#3B2C22;
+  --line:rgba(30,22,18,.14);
+  --line-2:rgba(30,22,18,.3);
+  --ink-muted:#3B2C22;
+  --ink-line:rgba(30,22,18,.16);
 
   --serif:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --sans:"Jost","Futura","Century Gothic",system-ui,sans-serif;
@@ -55,7 +60,7 @@
   --w-sm:450;
   --w-cap:500;
   /* bordó alapon (felső sáv, érték-sáv, lábléc) a másodlagos szöveg tömör krém, nem áttetsző */
-  --on-wine-2:#EFE6D9;
+  --on-wine-2:#F3E4D1;
   --on-wine-3:#E6D8C5;
 }
 
@@ -125,7 +130,7 @@ body{font-optical-sizing:auto}
 .hdr{position:fixed;inset:0 0 auto;z-index:50;transition:transform .45s var(--ease),background-color .4s ease}
 .hdr.is-hidden{transform:translateY(-100%)}
 body.nav-hidden{--stick:0px}
-.ann{height:var(--ann);display:flex;align-items:center;justify-content:center;gap:1.4rem;background:var(--wine);--t-muted:var(--on-wine-2);--t-faint:var(--on-wine-3);--fg:#F7F2EA;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--t-muted);padding-inline:var(--pad);position:relative}
+.ann{height:var(--ann);display:flex;align-items:center;justify-content:center;gap:1.4rem;background:var(--wine);--t-muted:var(--on-wine-2);--t-faint:var(--on-wine-3);--fg:#FAEFE2;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--t-muted);padding-inline:var(--pad);position:relative}
 .ann__sep{width:4px;height:4px;transform:rotate(45deg);background:var(--rg);flex:none}
 .lang{position:absolute;right:var(--pad);top:0;height:100%;display:flex;align-items:center;gap:.2rem}
 .lang button{font-size:.8rem;font-weight:500;letter-spacing:.14em;padding:.35rem .45rem;color:var(--t-faint);min-width:34px;min-height:30px;transition:color .3s}
@@ -189,7 +194,7 @@ body.nav-hidden{--stick:0px}
 
 /* színkorong */
 .sw{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none;box-shadow:0 0 0 1px var(--line-2)}
-.sw--onyx{background:#15110F;box-shadow:0 0 0 1px rgba(42,21,25,.3)}
+.sw--onyx{background:#15110F;box-shadow:0 0 0 1px rgba(30,22,18,.3)}
 .sw--pearl{background:#EEE7E1}
 .sw--rose{background:#E7C9C1}
 .sws{display:inline-flex;gap:.4rem;align-items:center}
@@ -225,12 +230,12 @@ body.nav-hidden{--stick:0px}
 .hero__more{margin-top:clamp(.5rem,1.4vh,.9rem);font-family:var(--serif);font-size:clamp(1.05rem,1.25vw,1.2rem);line-height:1.4;color:var(--t-muted)}
 .hero__btn{margin-top:clamp(1.2rem,3.4vh,2.2rem)}
 @media (min-width:961px) and (min-aspect-ratio:13/10){
-  .hero__panel{color:#F7F2EA;--t-muted:#F7F2EA}
-  .hero__panel .hero__label{color:#F7F2EA}
+  .hero__panel{color:#FAEFE2;--t-muted:#FAEFE2}
+  .hero__panel .hero__label{color:#FAEFE2}
   .hero__title{font-size:min(4.4rem,11.5cqi,7.2vh)}
   .hero__title em{color:#E7C9C1}
   .hero__tri span+span::before{background:#E7C9C1}
-  .hero__btn{background:#F7F2EA;color:var(--wine)}
+  .hero__btn{background:#FAEFE2;color:var(--wine)}
   .hero__btn:hover{background:#E7C9C1;color:var(--wine)}
 }
 /* kör alakú kategória-sor */
@@ -250,7 +255,7 @@ body.nav-hidden{--stick:0px}
   .hero__img{position:relative;inset:auto;height:auto;aspect-ratio:1792/2133;max-height:64svh;width:100%;background:var(--bg-2)}
   .hero__img img{object-position:50% 0%;transform-origin:50% 30%}
   /* a kompozit alsó 23%-a a fotó elmosott folytatása; az áll a teljes magasság ~71%-ánál van, a fade utána kezd */
-  .hero__img::after{background:linear-gradient(180deg,rgba(239,230,217,0) 80%,rgba(239,230,217,.5) 88%,rgba(239,230,217,.9) 94%,#EFE6D9 100%)}
+  .hero__img::after{background:linear-gradient(180deg,rgba(243,228,209,0) 80%,rgba(243,228,209,.5) 88%,rgba(243,228,209,.9) 94%,#F3E4D1 100%)}
   .hero__panel{position:relative;inset:auto;padding:0 var(--pad) 2.4rem;margin-top:-1.4rem}
 }
 /* álló tablet asztali szélességen (pl. 1024×1366): egymás mellett a szöveg a ló fejére ülne, ezért egymás alá kerül */
@@ -259,7 +264,7 @@ body.nav-hidden{--stick:0px}
   .hero{display:block;container-type:normal}
   .hero__img{position:relative;inset:auto;height:auto;aspect-ratio:1792/2133;max-height:62svh;width:100%;background:var(--bg-2)}
   .hero__img img{object-position:50% 0%;transform-origin:50% 30%}
-  .hero__img::after{background:linear-gradient(180deg,rgba(239,230,217,0) 80%,rgba(239,230,217,.5) 88%,rgba(239,230,217,.9) 94%,#EFE6D9 100%)}
+  .hero__img::after{background:linear-gradient(180deg,rgba(243,228,209,0) 80%,rgba(243,228,209,.5) 88%,rgba(243,228,209,.9) 94%,#F3E4D1 100%)}
   .hero__panel{position:relative;inset:auto;padding:0 var(--pad) 3rem;margin-top:-1.6rem}
 }
 @media (max-width:960px){
@@ -279,7 +284,7 @@ body.nav-hidden{--stick:0px}
 .val .icon{width:2rem;height:2rem;color:var(--rg)}
 /* Lucide vonalas ikon (2026-10-21): kitöltés nélkül, a vonal a currentColor; elemek között hajszál elválasztó */
 .icon--line{fill:none;stroke:currentColor}
-.val+.val{border-left:1px solid rgba(239,230,217,.28)}
+.val+.val{border-left:1px solid rgba(250,239,226,.28)}
 .val p{display:flex;flex-direction:column;font-size:.8rem;font-weight:var(--w-cap);letter-spacing:.16em;text-transform:uppercase;line-height:1.5}
 .val b{font-weight:600}
 .val span{color:var(--on-wine-2)}
@@ -403,7 +408,7 @@ body.nav-hidden{--stick:0px}
 /* =====================================================================
    KOLLEKCIÓ
    ===================================================================== */
-/* Kollekció-borító (2026-10-29, David: középre zárt cím, kiegyensúlyozott kompozíció): a fejrész középtengelyen
+/* Kollekció-borító (középre zárt cím, kiegyensúlyozott kompozíció): a fejrész középtengelyen
    (címke, cím, bevezető), alatta a kép és a lista KÖZÖS felső vonalon, a lista alján a gomb a kép aljához igazítva. */
 .kc-cover{padding-top:calc(var(--hdr) + clamp(1.6rem,4vh,3.2rem));padding-bottom:clamp(4rem,10vh,6rem);row-gap:clamp(2rem,5vh,3.4rem)}
 .kc-cover__head{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
@@ -435,24 +440,24 @@ body.nav-hidden{--stick:0px}
 /* =====================================================================
    TÖRTÉNET
    ===================================================================== */
-/* Történet-nyitó v3 „Istállólámpa” (2026-10-30, David választása a 3 prototípusból, 1:1-ben átvéve).
+/* Történet-nyitó v3 „Istállólámpa” .
    Fotó: Pexels 39320546 (Sevde Altıntaş), szürke ló kantárral az istállóajtóban, meleg lámpafény.
    Asztalon a cím és az alapító neve a kép jobb oldali sötét sávjában (12-es rács 10-12. hasáb), kártya és scrim nélkül;
    álló képernyőn a fotó felül, a szöveg alatta a sötét alapon, a fotó alja maszkkal a sötétbe fut.
    VARRAT: függöny. A nyitó ragad (sticky), a krém történet rácsúszik, mint egy lap a fotóra; a határon nincs színkeverés,
    a rácsúszó lap felfelé vetett lágy árnyéka adja a mélységet. */
-.st-cover{position:sticky;top:0;z-index:0;height:100svh;min-height:620px;padding-top:var(--hdr);background:#1E140C;color:#F7F2EA;overflow:hidden;isolation:isolate}
+.st-cover{position:sticky;top:0;z-index:0;height:100svh;min-height:620px;padding-top:var(--hdr);background:#15100D;color:#FAEFE2;overflow:hidden;isolation:isolate}
 .st-cover ~ *{position:relative;z-index:1;background:var(--bg)}
 .st-cover + .st-story{box-shadow:0 -28px 48px -24px rgba(20,12,6,.55)}
-/* 2026-10-30 David: a kép a fejléc alá is benyúlik (inset:0), így amikor a fejléc görgetéskor felcsúszik, a kép már ott van, nincs üres sáv és nincs ugrás */
+/* a kép a fejléc alá is benyúlik (inset:0), így amikor a fejléc görgetéskor felcsúszik, a kép már ott van, nincs üres sáv és nincs ugrás */
 .st-cover__img{position:absolute;inset:0;z-index:-1;margin:0}
 .st-cover__img img{width:100%;height:100%;object-fit:cover;object-position:40% 56%}
 .st-cover__in{height:100%;align-content:end;padding-bottom:clamp(48px,9vh,96px)}
 .st-cover__txt{grid-column:10/13}
-.st-cover__h{font-size:clamp(3.2rem,min(4.6vw,9vh),5.6rem);line-height:1.04;letter-spacing:-.02em;color:#F7F2EA;font-variation-settings:"opsz" var(--op-xl)}
+.st-cover__h{font-size:clamp(3.2rem,min(4.6vw,9vh),5.6rem);line-height:1.04;letter-spacing:-.02em;color:#FAEFE2;font-variation-settings:"opsz" var(--op-xl)}
 .st-cover__h span,.st-cover__h em{display:block}
 .st-cover__h em{font-style:italic}
-.st-cover__sig{margin-top:32px;display:grid;gap:4px;font-size:1.0625rem;line-height:1.4;color:#F7F2EA}
+.st-cover__sig{margin-top:32px;display:grid;gap:4px;font-size:1.0625rem;line-height:1.4;color:#FAEFE2}
 .st-cover__sig span:first-child{font-family:var(--serif);font-size:1.375rem;font-weight:500;font-variation-settings:"opsz" var(--op-m)}
 .st-cover__sig span:last-child{font-weight:450;color:#E6D8C5}
 @media (max-width:960px),(max-aspect-ratio:6/5){
@@ -517,7 +522,7 @@ body.nav-hidden{--stick:0px}
 /* =====================================================================
    KAPCSOLAT
    ===================================================================== */
-/* Kapcsolat első képernyő (2026-10-22, David választása: „Kártya a képen”). A kantáros portré a jobb 7 oszlopban
+/* Kapcsolat első képernyő („Kártya a képen”). A kantáros portré a jobb 7 oszlopban
    teljes magasságban; a cím, a bevezető, az e-mail és a gombok EGY krém kártyában, közös bal tengelyen, a kártya
    a kép bal szélére szándékosan rácsúszik. A fej (fülek, kristály homlokszíj, szem) a kártyán kívül marad
    (object-position 50% 12%). Térköz-skála 8 px alapon: 8 / 16 / 24 / 40 / 64. Asztalon pontosan egy képernyő. */
@@ -553,9 +558,9 @@ body.nav-hidden{--stick:0px}
 /* ---------- Űrlap (világos felületen) ---------- */
 .fld{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.2rem}
 .fld label,.fld legend{font-size:.8rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
-.fld input,.fld textarea,.fld select{min-height:50px;padding:.75rem .9rem;background:#FBF8F5;border:1px solid rgba(42,21,25,.3);color:var(--ink);border-radius:0;transition:border-color .25s,box-shadow .25s}
+.fld input,.fld textarea,.fld select{min-height:50px;padding:.75rem .9rem;background:#FDF8F1;border:1px solid rgba(30,22,18,.3);color:var(--ink);border-radius:0;transition:border-color .25s,box-shadow .25s}
 .fld textarea{min-height:140px;resize:vertical}
-.fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--rg-deep);box-shadow:0 0 0 2px rgba(138,82,56,.25)}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--rg-deep);box-shadow:0 0 0 2px rgba(122,85,32,.25)}
 .fld .err{display:none;font-size:.86rem;font-weight:var(--w-sm);color:#8E1F2B}
 .fld.bad input,.fld.bad textarea,.fld.bad select{border-color:#8E1F2B}
 .fld.bad .err{display:block}
@@ -566,7 +571,7 @@ body.nav-hidden{--stick:0px}
 .chk input{width:20px;height:20px;margin-top:.15rem;accent-color:var(--ink);flex:none}
 .chk a{text-decoration:underline;text-underline-offset:3px}
 .note{font-size:.86rem;font-weight:var(--w-sm);color:var(--ink-muted)}
-.ok-msg{display:none;margin-top:1rem;padding:1rem 1.2rem;border:1px solid var(--ink-line);background:#FBF8F5}
+.ok-msg{display:none;margin-top:1rem;padding:1rem 1.2rem;border:1px solid var(--ink-line);background:#FDF8F1}
 .ok-msg.is-on{display:block}
 
 /* =====================================================================
@@ -575,7 +580,7 @@ body.nav-hidden{--stick:0px}
 .co{padding-top:calc(var(--hdr) + 2.4rem);padding-bottom:clamp(4rem,10vh,6rem)}
 .co__h{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.6rem}
 .co__h h1{font-size:clamp(2.6rem,5vw,4.8rem)}
-.demo{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--rg);border-left-width:4px;color:var(--fg);background:rgba(200,144,111,.1);margin-bottom:1.6rem}
+.demo{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--rg);border-left-width:4px;color:var(--fg);background:rgba(201,161,94,.12);margin-bottom:1.6rem}
 .demo strong{display:block;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--accent);margin-bottom:.2rem}
 .demo p{font-size:.95rem;color:var(--t-muted)}
 .sheet{background:var(--surface);color:var(--ink);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
@@ -585,9 +590,9 @@ body.nav-hidden{--stick:0px}
 .sheet fieldset{border:0;margin-bottom:2.2rem}
 .sheet legend{font-family:var(--serif);font-size:1.5rem;margin-bottom:1.1rem;padding:0}
 .radios{display:grid;gap:.6rem}
-.rcard{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;padding:1rem 1.1rem;border:1px solid rgba(42,21,25,.28);background:#FBF8F5;cursor:pointer;transition:border-color .25s,box-shadow .25s}
+.rcard{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;padding:1rem 1.1rem;border:1px solid rgba(30,22,18,.28);background:#FDF8F1;cursor:pointer;transition:border-color .25s,box-shadow .25s}
 .rcard input{position:absolute;opacity:0;pointer-events:none}
-.rcard__dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(42,21,25,.5);display:grid;place-items:center}
+.rcard__dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(30,22,18,.5);display:grid;place-items:center}
 .rcard__dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .25s var(--ease)}
 .rcard:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .rcard:has(input:checked) .rcard__dot::after{transform:scale(1)}
@@ -675,7 +680,7 @@ body.nav-hidden{--stick:0px}
 /* =====================================================================
    LÁBLÉC
    ===================================================================== */
-.foot{background:var(--wine);color:var(--on-wine);--fg:#F7F2EA;--t-muted:var(--on-wine-2);--t-faint:var(--on-wine-3);--line:rgba(247,242,234,.16);--accent:#E6B79C;padding-top:clamp(4rem,10vh,6rem);font-size:.95rem}
+.foot{background:var(--wine);color:var(--on-wine);--fg:#FAEFE2;--t-muted:var(--on-wine-2);--t-faint:var(--on-wine-3);--line:rgba(250,239,226,.16);--accent:#E2C08A;padding-top:clamp(4rem,10vh,6rem);font-size:.95rem}
 .foot__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:2.4rem}
 .foot__brand img{width:120px}
 .foot__brand p{margin-top:1.2rem;color:var(--t-muted);max-width:30ch}
@@ -726,27 +731,27 @@ body.nav-hidden{--stick:0px}
    A bal panel sötét termék-részlet (GWK fémtábla), a kép a panel #0B0A0A alapjába alfázik (nincs szín a színben),
    a jobb panel a kantáros ló, a szöveg a kép sötét bal alsó részén ül, scrim nélkül (pixel-mérés: kor-1021).
    ===================================================================== */
-/* „duo” (2026-10-22, 3. kör, David: „mint előbb, a bal nagyobb volt, a lovas kép legyen kicsit nagyobb”).
+/* „duo” .
    Két egyforma panel: teljes panelszélességű, azonos magasságú képdoboz (contain, a széle és az alja a sötétbe úszik),
    alatta azonos h2 cím (Bodoni), a jobb oldalon az idézet szövegtörzsként, mindkettő alatt link. A ló a teljes fejjel. */
-.duo{background:#1A1615;color:var(--on-wine)}
+.duo{background:#15100D;color:var(--on-wine)}
 .duo__in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .duo__p{display:flex;flex-direction:column;padding-bottom:clamp(40px,5vw,64px)}
 .duo__img{margin:0;height:clamp(420px,46vw,700px);position:relative}
 .duo__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 0;display:block;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%),linear-gradient(0deg,transparent 0,#000 30%);
   -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent 100%),linear-gradient(0deg,transparent 0,#000 30%);mask-composite:intersect}
-/* a ló képe FEKVŐ fotó (Pexels 235894, David 2026-10-22: „fekvő tájolású képet, ne az állót”): kitölti a dobozt (cover),
+/* a ló képe FEKVŐ fotó (Pexels 235894): kitölti a dobozt (cover),
    a fej a bal oldalon teljes egészében; balra csak keskeny átúszás (ott az orr), jobbra és alul a régi átúszás. */
 .duo__img--lo img{object-fit:cover;object-position:0% 50%;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 80%,transparent 100%),linear-gradient(0deg,transparent 0,#000 12%);
   mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 80%,transparent 100%),linear-gradient(0deg,transparent 0,#000 12%)}
 .duo__txt{margin-top:-24px;position:relative;padding-inline:clamp(24px,4vw,64px);max-width:34rem}
-.duo__h{font-size:clamp(2.2rem,3.4vw,3.6rem);line-height:1.08;color:#F7F2EA;text-wrap:balance;margin:0;max-width:14ch}
+.duo__h{font-size:clamp(2.2rem,3.4vw,3.6rem);line-height:1.08;color:#FAEFE2;text-wrap:balance;margin:0;max-width:14ch}
 .duo__q{margin:16px 0 0}
 .duo__q p{font-family:var(--serif);font-style:italic;font-size:1.25rem;line-height:1.5;color:var(--on-wine-2);max-width:32ch}
 .duo__q cite{display:block;margin-top:8px;font-style:normal;font-size:.9rem;font-weight:500;color:var(--on-wine-3)}
-.duo__a{margin-top:24px;color:#F7F2EA;align-self:flex-start}
+.duo__a{margin-top:24px;color:#FAEFE2;align-self:flex-start}
 .duo__a::after{background:var(--rg)}
 .duo__a:hover{color:var(--rg)}
 @media (max-width:960px){
@@ -755,12 +760,12 @@ body.nav-hidden{--stick:0px}
   .duo__txt{padding-inline:var(--pad)}
 }
 /* záró sáv: teljes szélességű alkonyi kép, a szöveg a kép sötét bal oldalán, a gomb jobbra */
-.moment{position:relative;overflow:hidden;isolation:isolate;background:#160B05;color:#F7F2EA}
+.moment{position:relative;overflow:hidden;isolation:isolate;background:#15100D;color:#FAEFE2}
 .moment__img{position:absolute;inset:0;z-index:-1;margin:0}
 .moment__img img{width:100%;height:100%;object-fit:cover;object-position:50% 34%}
 .moment__in{min-height:clamp(380px,34vw,560px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:clamp(1.4rem,3vw,2.2rem);padding-block:clamp(3rem,7vw,5rem)}
-.moment__t{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,3.2vw,3.3rem);line-height:1.18;max-width:14.5ch;text-wrap:balance;color:#F7F2EA}
-.btn--cream{background:#F7F2EA;color:var(--wine)}
+.moment__t{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,3.2vw,3.3rem);line-height:1.18;max-width:14.5ch;text-wrap:balance;color:#FAEFE2}
+.btn--cream{background:#FAEFE2;color:var(--wine)}
 .btn--cream:hover{background:var(--powder);color:var(--wine)}
 @media (max-width:960px){
   .moment__img img{object-position:46% 30%}
@@ -769,7 +774,7 @@ body.nav-hidden{--stick:0px}
 }
 
 /* =====================================================================
-   Bodoni Moda vonalvastagság (2026-10-21, David: „bizonyos részeken túl vékony”)
+   Bodoni Moda vonalvastagság 
    A betű változó opsz-tengelyű (6-96). font-optical-sizing:auto alatt a böngésző a px-méretet veszi opsz-nak,
    így 60 px fölött 60-96-os optikai méret jön: a hajszálvonal mérve 0,1-0,3 px (140 px-en is), azaz eltűnik.
    Javítás: a nagy címeken rögzített, alacsonyabb opsz; a betű alakja ugyanaz, csak a hajszál vastagabb.
@@ -792,7 +797,7 @@ body.nav-hidden{--stick:0px}
 .soc__a:hover{color:var(--accent);border-color:var(--accent)}
 .foot__soc{margin-top:24px;align-items:center}
 .foot .soc li+li{margin-top:0}
-.foot .soc__a{border-color:rgba(247,242,234,.34);color:var(--fg)}
+.foot .soc__a{border-color:rgba(250,239,226,.34);color:var(--fg)}
 .foot .soc__a:hover{background:var(--fg);border-color:var(--fg);color:var(--wine)}
 .ct__soc{margin-top:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .ct__soc-h{font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--t-muted)}
@@ -803,9 +808,9 @@ body.nav-hidden{--stick:0px}
 .sub__p{margin-top:12px;max-width:40ch;color:var(--t-muted)}
 .sub__row{display:flex;gap:12px}
 .sub__fld{flex:1;min-width:0}
-.sub__fld input{width:100%;min-height:52px;padding:.75rem 1rem;background:#FBF8F5;border:1px solid rgba(42,21,25,.3);color:var(--ink);border-radius:0;font-size:1rem;transition:border-color .25s,box-shadow .25s}
-.sub__fld input::placeholder{color:#6B4A50;opacity:1}
-.sub__fld input:focus{outline:none;border-color:var(--rg-deep);box-shadow:0 0 0 2px rgba(138,82,56,.25)}
+.sub__fld input{width:100%;min-height:52px;padding:.75rem 1rem;background:#FDF8F1;border:1px solid rgba(30,22,18,.3);color:var(--ink);border-radius:0;font-size:1rem;transition:border-color .25s,box-shadow .25s}
+.sub__fld input::placeholder{color:#5E4A3C;opacity:1}
+.sub__fld input:focus{outline:none;border-color:var(--rg-deep);box-shadow:0 0 0 2px rgba(122,85,32,.25)}
 .sub__fld.bad input{border-color:#8E1F2B}
 .sub__btn{flex:none}
 .sub__chk{margin-top:16px}
@@ -820,12 +825,12 @@ body.nav-hidden{--stick:0px}
 .sub--pdp .sub__btn:hover{background:var(--accent)}
 .sub--foot{padding-bottom:clamp(3rem,7vh,4.5rem);margin-bottom:clamp(3rem,7vh,4.5rem);border-bottom:1px solid var(--line)}
 .foot .sub__h{color:var(--fg)}
-.foot .sub__btn{background:#F7F2EA;color:var(--wine)}
+.foot .sub__btn{background:#FAEFE2;color:var(--wine)}
 .foot .sub__btn:hover{background:var(--powder)}
 .foot .chk{color:var(--fg)}
-.foot .chk input{accent-color:#F7F2EA}
+.foot .chk input{accent-color:#FAEFE2}
 .foot .sub__fld.bad input{border-color:var(--powder);box-shadow:0 0 0 2px var(--powder)}
-.foot .sub__msg.is-err,.foot .sub__msg.is-ok,.foot .sub__msg.is-wait{color:#F7F2EA}
+.foot .sub__msg.is-err,.foot .sub__msg.is-ok,.foot .sub__msg.is-wait{color:#FAEFE2}
 .foot .sub__chk.bad span{text-decoration-color:var(--powder)}
 @media (max-width:960px){.sub{grid-template-columns:1fr}}
 @media (max-width:560px){.sub__row{flex-direction:column}.sub__btn{width:100%}}
@@ -851,19 +856,19 @@ body.nav-hidden{--stick:0px}
 @media (max-width:560px){.gal{--rowh:170px}.gal__cap{letter-spacing:.1em}}
 
 /* nagyító: natív dialog, sötét meleg háttér (a duo szekció színe), a kép egészben */
-.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#1A1615;color:#F7F2EA;overflow:hidden}
-.lb::backdrop{background:#1A1615}
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#15100D;color:#FAEFE2;overflow:hidden}
+.lb::backdrop{background:#15100D}
 .lb[open]{animation:lbIn .35s var(--ease)}
 @keyframes lbIn{from{opacity:0}to{opacity:1}}
 .lb__in{position:absolute;inset:0;display:grid;place-items:center;padding:72px clamp(16px,7vw,112px) 24px}
 .lb__fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:100%}
 .lb__fig img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100svh - 190px);object-fit:contain}
-.lb__cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 24px;font-size:.86rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#F7F2EA;text-align:center}
+.lb__cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 24px;font-size:.86rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#FAEFE2;text-align:center}
 .lb__n{letter-spacing:.1em;color:#E6D8C5}
-.lb__a{color:#F7F2EA}
+.lb__a{color:#FAEFE2}
 .lb__a:hover{color:var(--powder)}
-.lb__nav,.lb__x{position:absolute;width:52px;height:52px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(247,242,234,.34);color:#F7F2EA;transition:background-color .3s,color .3s}
-.lb__nav:hover,.lb__x:hover{background:#F7F2EA;color:var(--wine)}
+.lb__nav,.lb__x{position:absolute;width:52px;height:52px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(250,239,226,.34);color:#FAEFE2;transition:background-color .3s,color .3s}
+.lb__nav:hover,.lb__x:hover{background:#FAEFE2;color:var(--wine)}
 .lb__nav .icon,.lb__x .icon{width:22px;height:22px}
 .lb__nav{top:50%;transform:translateY(-50%)}
 .lb__nav--p{left:clamp(8px,2vw,32px)}
@@ -889,3 +894,152 @@ body.nav-hidden{--stick:0px}
 .notify__l{display:block;margin-bottom:6px;font-size:.8rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
 .notify .sub__chk{margin-top:12px}
 .notify__btn{margin-top:16px}
+
+/* =====================================================================
+   FŐOLDAL · Krisztina 2026-11-04-i végleges terve
+   Fekete fejléc és lábléc, #FAEFE2 alap, arany kiemelés. A hero 3 képes váltó, a szöveg a képek nyugodt, sötét
+   bal oldalán ül (scrim nélkül, a valódi pixeleken mérve). A képek natív szélessége 1774 px: ennél szélesebb
+   képernyőn a kép nem nő tovább, a széle a fekete háttérbe úszik.
+   ===================================================================== */
+.top{padding-top:var(--hdr);background:var(--black)}
+.hs{position:relative;height:max(460px,min(calc(100svh - var(--hdr)),50vw,887px));background:var(--black);overflow:hidden;color:#FAEFE2}
+.hs__track{position:absolute;inset:0;max-width:1774px;margin-inline:auto}
+@media (min-width:1775px){.hs__track{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}}
+.hs__s{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s var(--ease-io)}
+.hs__s.is-on{opacity:1}
+.hs__s img{width:100%;height:100%;object-fit:cover;object-position:62% 30%}
+.hs__s--3 img{object-position:70% 20%}
+.hs__panel{position:absolute;z-index:2;top:0;bottom:0;left:max(var(--pad),calc((100vw - 1774px) / 2 + 3vw));width:min(38%,560px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-block:48px 72px}
+.hs__logo{width:clamp(180px,17vw,260px);height:auto}
+.hs__h{margin-top:clamp(20px,3vh,32px);font-style:italic;font-size:clamp(1.7rem,2.3vw,2.4rem);line-height:1.2;color:#FAEFE2;text-wrap:balance;max-width:16ch;font-variation-settings:"opsz" var(--op-m)}
+.hs__tri{margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-family:var(--serif);font-size:clamp(1.05rem,1.15vw,1.2rem);color:#F3E4D1}
+.hs__tri span{display:inline-flex;align-items:center;gap:14px}
+.hs__tri span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:#E2C08A}
+.hs__btn{margin-top:clamp(24px,4vh,40px)}
+.hs__nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:52px;height:52px;display:grid;place-items:center;color:#FAEFE2;border-radius:50%;transition:background-color .3s,color .3s}
+.hs__nav:hover{background:rgba(250,239,226,.14)}
+.hs__nav .icon{width:22px;height:22px}
+.hs__nav--p{left:clamp(4px,1.2vw,20px)}
+.hs__nav--n{right:clamp(4px,1.2vw,20px)}
+.hs__dots{position:absolute;z-index:3;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:4px}
+.hs__dot{width:28px;height:28px;display:grid;place-items:center}
+.hs__dot::before{content:"";width:9px;height:9px;border-radius:50%;border:1px solid #FAEFE2;transition:background-color .3s}
+.hs__dot[aria-current="true"]::before{background:#FAEFE2}
+.js .hs__panel>*{opacity:0;transform:translateY(10px)}
+.js .top.is-in .hs__panel>*{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .top.is-in .hs__panel>*:nth-child(2){transition-delay:.08s}
+.js .top.is-in .hs__panel>*:nth-child(3){transition-delay:.16s}
+.js .top.is-in .hs__panel>*:nth-child(4){transition-delay:.24s}
+/* telefon és álló tablet: a kép felül (a ló a kivágás közepén), a szöveg alatta a fekete alapon */
+@media (max-width:960px),(max-aspect-ratio:6/5){
+  .hs{height:auto;display:flex;flex-direction:column}
+  .hs__track{position:relative;inset:auto;width:100%;aspect-ratio:4/3;max-height:58svh}
+  .hs__s img{object-position:64% 30%}
+  .hs__s--3 img{object-position:66% 20%}
+  .hs__panel{position:relative;inset:auto;width:auto;padding:32px var(--pad) 40px}
+  .hs__logo{width:170px}
+  .hs__h{font-size:clamp(1.6rem,6.6vw,2.2rem)}
+  .hs__nav{top:calc(min(75vw,58svh) / 2)}
+  .hs__dots{top:calc(min(75vw,58svh) - 40px);bottom:auto}
+}
+
+/* díszítő címsor: nagybetűs felirat két arany hajszálvonal között (Krisztina tervéből) */
+.orn-h{display:flex;align-items:center;justify-content:center;gap:20px;font-family:var(--sans);font-size:.95rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--fg);text-align:center}
+.orn-h::before,.orn-h::after{content:"";width:clamp(32px,6vw,72px);height:1px;background:var(--gold)}
+
+/* termékkategóriák: négy kép natív 3:2 arányban (vágás nélkül), alatta a név és egy kis nyíl */
+.cats2{background:var(--bg);padding-block:clamp(64px,9vh,96px) clamp(64px,10vh,112px)}
+.cats2__list{margin-top:clamp(32px,5vh,48px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.cat2{display:flex;flex-direction:column;gap:16px}
+.cat2__img{display:block;overflow:hidden;background:var(--surface-2)}
+.cat2__img img{width:100%;height:auto;transition:transform .8s var(--ease)}
+.cat2:hover .cat2__img img{transform:scale(1.03)}
+.cat2__n{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:color .3s}
+.cat2__i{width:14px;height:14px;transform:rotate(-90deg)}
+.cat2:hover .cat2__n{color:var(--accent)}
+@media (max-width:1100px){.cats2__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cats2__list{grid-template-columns:1fr;gap:32px}}
+
+/* Evening Star: bal oldalon a kollekció fotója (natív méret fölé nem nő), jobbra a krém panel a szöveggel */
+.es2{display:grid;grid-template-columns:minmax(0,min(50%,860px)) minmax(0,1fr);background:var(--bg-2)}
+/* a kép a saját arányában (860:725) adja a sáv magasságát, így nem vágódik; a szöveg-panel ebbe fér bele */
+.es2__img{margin:0;align-self:start;aspect-ratio:860/725;background:#2A1A0A}
+.es2__img img{width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.es2__txt{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(32px,4vw,64px) clamp(24px,5vw,80px)}
+.es2__k{color:var(--accent);font-size:.86rem;letter-spacing:.3em}
+.es2__h{margin-top:12px;font-size:clamp(2.6rem,4.6vw,5.6rem);line-height:1;letter-spacing:.01em;text-transform:uppercase;font-variation-settings:"opsz" var(--op-l)}
+.es2__h em{font-style:italic}
+.es2__p{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.45vw,1.4rem);line-height:1.45;color:var(--t-muted);max-width:30ch;font-variation-settings:"opsz" var(--op-m)}
+.es2__sw{margin-top:clamp(28px,4vh,40px);display:flex;gap:clamp(28px,4vw,48px);list-style:none}
+.es2__sw li{display:flex;flex-direction:column;align-items:center;gap:12px;font-size:.8rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.sw--ball{width:44px;height:44px;box-shadow:inset -6px -8px 14px rgba(0,0,0,.28),0 0 0 1px rgba(30,22,18,.34),0 6px 14px -8px rgba(30,22,18,.6)}
+.sw--ball.sw--onyx{background:radial-gradient(circle at 34% 30%,#6E625C 0,#15110F 46%,#050404 100%)}
+.sw--ball.sw--pearl{background:radial-gradient(circle at 34% 30%,#FFFFFF 0,#EEE7E1 44%,#C9BFB7 100%)}
+.sw--ball.sw--rose{background:radial-gradient(circle at 34% 30%,#FBE9E4 0,#E7C9C1 44%,#B98C80 100%)}
+.es2__btn{margin-top:clamp(28px,4vh,40px)}
+@media (max-width:1100px){.es2{grid-template-columns:1fr}.es2__img{width:min(100%,860px);justify-self:center}}
+
+/* A GWK Horse története: Krisztina banner-képe teljes szélességben, a szöveg a kép sötét bal paneljén */
+.sb{position:relative;background:var(--black);color:#FAEFE2;overflow:hidden}
+.sb__img{margin:0;aspect-ratio:2172/724;min-height:460px;max-height:724px;width:100%}
+.sb__img img{width:100%;height:100%;object-fit:cover;object-position:0% 50%}
+.sb__txt{position:absolute;z-index:1;top:0;bottom:0;left:max(var(--pad),calc((100vw - 2172px) / 2));width:min(33%,720px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px clamp(16px,2.4vw,40px)}
+.sb__h{font-style:italic;font-size:clamp(2rem,3.2vw,3.4rem);line-height:1.1;color:#FAEFE2;font-variation-settings:"opsz" var(--op-l)}
+.sb__orn{margin-top:20px;display:flex;align-items:center;gap:14px;color:var(--gold)}
+.sb__orn i{width:56px;height:1px;background:var(--gold)}
+.sb__orn .icon{width:18px;height:18px}
+.sb__p{margin-top:20px;display:flex;flex-direction:column;font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,1.4vw,1.4rem);line-height:1.45;color:#F3E4D1;font-variation-settings:"opsz" var(--op-m)}
+.sb__btn{margin-top:clamp(24px,4vh,40px)}
+.btn--goldline{border-color:var(--gold);color:#FAEFE2}
+.btn--goldline:hover{background:var(--gold);color:var(--black)}
+@media (max-width:1100px){
+  .sb{display:flex;flex-direction:column}
+  .sb__img{aspect-ratio:16/10;min-height:0;max-height:none}
+  .sb__img img{object-position:74% 50%}
+  .sb__txt{position:relative;inset:auto;width:auto;padding:40px var(--pad) 56px}
+}
+
+/* érték-sor: krém alapon, vonalas ikonok, hajszál elválasztók */
+.vals{background:var(--bg);color:var(--fg);border-top:1px solid var(--line)}
+.vals__list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:clamp(40px,6vh,56px)}
+.val{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
+.val .icon{width:2rem;height:2rem;color:var(--accent)}
+.icon--line{fill:none;stroke:currentColor}
+.val+.val{border-left:1px solid var(--line-2)}
+.val p{display:flex;flex-direction:column;font-size:.8rem;font-weight:var(--w-cap);letter-spacing:.18em;text-transform:uppercase;line-height:1.5}
+.val b{font-weight:600}
+@media (max-width:960px){.vals__list{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}.val:nth-child(odd){border-left:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hs__panel>*{opacity:1;transform:none}
+  .hs__s{transition-duration:.35s}
+  .cat2__img img{transition:none}
+}
+
+/* fejléc fekete (Krisztina terve): a világos logó, krém menü, arany jelölés */
+.hdr{--fg:#FAEFE2;--t-muted:#E6D8C5;--t-faint:#E6D8C5;--line:rgba(250,239,226,.14);--accent:#E2C08A}
+.nav,.hdr.is-solid .nav,.hdr.is-open .nav{background:var(--black);border-bottom-color:rgba(250,239,226,.12)}
+.ann{background:#0B0807;border-bottom:1px solid rgba(201,161,94,.22)}
+.ann__long{color:var(--gold-l);font-family:var(--serif);font-style:italic;letter-spacing:.06em;text-transform:none;font-size:.95rem}
+.nav__links a[aria-current="page"]{color:var(--gold-l)}
+.nav__links a[aria-current="page"]::after,.lang button[aria-pressed="true"]::after{background:var(--gold-l)}
+.cart-count{background:var(--gold-l);color:var(--black)}
+.nav__brand{width:92px}
+/* lábléc: fekete, arany kiemelés; a „Maradj velünk!” gomb arany alapon fekete betűvel (8,2:1) */
+.foot{--accent:#E2C08A;--line:rgba(250,239,226,.14);border-top:1px solid rgba(201,161,94,.4)}
+.foot__brand img{width:150px}
+.foot .sub__h{font-family:var(--sans);font-weight:600;font-size:clamp(1.3rem,1.6vw,1.6rem);letter-spacing:.06em;text-transform:uppercase;color:var(--gold-l)}
+.foot .sub__btn{background:var(--gold-l);color:var(--black)}
+.foot .sub__btn:hover{background:#FAEFE2;color:var(--black)}
+.btn--cream{background:#FAEFE2;color:var(--black)}
+.btn--cream:hover{background:var(--gold-l);color:var(--black)}
+.top{height:auto;display:block}
+.vals .val span{color:var(--t-muted)}
+@media (max-width:960px){.vals .val{justify-content:center}.vals .val:nth-child(even){padding-left:0}}
+
+/* termékoldal, asztali nézet: minden galéria-kép egy képernyőnyi vitrin-keretben (a kép egészben, középen, natív méret fölé
+   nem nő), így az első képernyőn csak az első kép látszik, a második nem lóg be félig a hajtás alá */
+@media (min-width:961px){
+  .pdp__gal figure{height:max(420px,calc(100svh - var(--hdr) - 2.4rem));display:grid;place-items:center;overflow:hidden}
+  .pdp__gal img{width:auto;height:auto;max-width:100%;max-height:100%}
+}

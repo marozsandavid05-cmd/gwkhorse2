@@ -41,7 +41,7 @@
       if (form.botcheck && form.botcheck.checked) return; // robot: csendben eldobjuk
       if (!hasKey) { msg(form, 'err', t('sub.off', { mail: C.email })); return; }
 
-      // TODO backend (Caesar): feliratkozók adatbázisba, automatikus levél a készlet visszaállításakor
+      // Élesítéskor: feliratkozók adatbázisba, automatikus levél a készlet visszaállításakor.
       var product = form.getAttribute('data-sub') || t('sub.all');
       var notify = form.hasAttribute('data-notify'), color = form.getAttribute('data-notify-c') || '';
       var payload = {

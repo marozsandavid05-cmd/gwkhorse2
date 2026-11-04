@@ -18,11 +18,11 @@
       unit: 'db',
       sizes: ['pony', 'cob', 'full'], // MINTA MÉRETEK, az ügyfél adja meg
       colors: {
-        onyx: [img('kantar-onyx', 1402, 1122, true)],
+        onyx: [img('kantar-onyx', 1402, 1122, true), img('kantar-onyx-2', 1536, 1024, true)],
         rose: [img('kantar-rose', 1402, 1122, true)]
       },
       // készlet színenként: elfogyott = true esetén a termékoldalon „Szólj, ha újra van” jön a Kosárba gomb helyén.
-      // BEMUTATÓ: a Rose kantár elfogyottnak jelölve (David példája). Élesben az admin állítja (Caesar backend).
+      // BEMUTATÓ: a Rose kantár elfogyottnak jelölve. Élesben az adminból állítható.
       stock: { onyx: { elfogyott: false }, rose: { elfogyott: true } },
       name: { hu: 'Evening Star kantár', en: 'Evening Star Bridle' },
       type: { hu: 'Kantár', en: 'Bridle' },
@@ -51,7 +51,7 @@
       unit: 'db',
       sizes: ['pony', 'full'], // MINTA MÉRETEK, az ügyfél adja meg
       colors: {
-        onyx: [img('nyereg-onyx', 1509, 1042, true)],
+        onyx: [img('nyereg-onyx', 1509, 1042, true), img('nyereg-onyx-2', 1536, 1024, true)],
         pearl: [img('nyereg-pearl', 1448, 1086, true)],
         rose: [img('nyereg-rose', 1509, 1042, true)]
       },
@@ -81,7 +81,7 @@
       unit: 'db',
       sizes: ['pony', 'cob', 'full'], // MINTA MÉRETEK, az ügyfél adja meg
       colors: {
-        onyx: [img('fulvedo-onyx', 1402, 1122, true)],
+        onyx: [img('fulvedo-onyx-2', 1536, 1024, true), img('fulvedo-onyx', 1402, 1122, true)],
         pearl: [img('fulvedo-pearl', 1086, 1448, true), img('fulvedo-pearl-2', 1402, 1122, true)],
         rose: [img('fulvedo-rose', 1402, 1122, true)]
       },
@@ -113,7 +113,7 @@
       unit: 'par',
       sizes: ['pony', 'cob', 'full'], // MINTA MÉRETEK, az ügyfél adja meg
       colors: {
-        onyx: [img('labvedo-onyx', 1210, 1300, true), img('labvedo-onyx-2', 464, 558, false), img('labvedo-onyx-3', 411, 498, false)],
+        onyx: [img('labvedo-onyx-4', 1536, 1024, true), img('labvedo-onyx', 1210, 1300, true), img('labvedo-onyx-2', 464, 558, false), img('labvedo-onyx-3', 411, 498, false)],
         pearl: [], // az ügyféltől még nincs fotó: az oldal kiírja
         rose: [img('labvedo-rose', 1086, 1448, true)]
       },

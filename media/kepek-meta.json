@@ -531,5 +531,200 @@
     "kb": 21
    }
   ]
+ },
+ "hero-diak-1": {
+  "w": 1774,
+  "h": 887,
+  "ar": 2.0,
+  "files": [
+   {
+    "f": "hero-diak-1.webp",
+    "w": 1774,
+    "h": 887,
+    "kb": 48
+   },
+   {
+    "f": "hero-diak-1-1200.webp",
+    "w": 1200,
+    "h": 600,
+    "kb": 30
+   },
+   {
+    "f": "hero-diak-1-800.webp",
+    "w": 800,
+    "h": 400,
+    "kb": 17
+   }
+  ]
+ },
+ "hero-diak-2": {
+  "w": 1774,
+  "h": 887,
+  "ar": 2.0,
+  "files": [
+   {
+    "f": "hero-diak-2.webp",
+    "w": 1774,
+    "h": 887,
+    "kb": 57
+   },
+   {
+    "f": "hero-diak-2-1200.webp",
+    "w": 1200,
+    "h": 600,
+    "kb": 35
+   },
+   {
+    "f": "hero-diak-2-800.webp",
+    "w": 800,
+    "h": 400,
+    "kb": 20
+   }
+  ]
+ },
+ "hero-diak-3": {
+  "w": 1774,
+  "h": 887,
+  "ar": 2.0,
+  "files": [
+   {
+    "f": "hero-diak-3.webp",
+    "w": 1774,
+    "h": 887,
+    "kb": 54
+   },
+   {
+    "f": "hero-diak-3-1200.webp",
+    "w": 1200,
+    "h": 600,
+    "kb": 30
+   },
+   {
+    "f": "hero-diak-3-800.webp",
+    "w": 800,
+    "h": 400,
+    "kb": 17
+   }
+  ]
+ },
+ "es-banner": {
+  "w": 860,
+  "h": 725,
+  "ar": 1.1862,
+  "files": [
+   {
+    "f": "es-banner.webp",
+    "w": 860,
+    "h": 725,
+    "kb": 111
+   },
+   {
+    "f": "es-banner-600.webp",
+    "w": 600,
+    "h": 506,
+    "kb": 60
+   }
+  ]
+ },
+ "tortenet-banner": {
+  "w": 2172,
+  "h": 724,
+  "ar": 3.0,
+  "files": [
+   {
+    "f": "tortenet-banner.webp",
+    "w": 2172,
+    "h": 724,
+    "kb": 99
+   },
+   {
+    "f": "tortenet-banner-1400.webp",
+    "w": 1400,
+    "h": 467,
+    "kb": 57
+   },
+   {
+    "f": "tortenet-banner-900.webp",
+    "w": 900,
+    "h": 300,
+    "kb": 31
+   }
+  ]
+ },
+ "kantar-onyx-2": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "kantar-onyx-2.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 102
+   },
+   {
+    "f": "kantar-onyx-2-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 39
+   }
+  ]
+ },
+ "nyereg-onyx-2": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "nyereg-onyx-2.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 347
+   },
+   {
+    "f": "nyereg-onyx-2-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 109
+   }
+  ]
+ },
+ "fulvedo-onyx-2": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "fulvedo-onyx-2.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 159
+   },
+   {
+    "f": "fulvedo-onyx-2-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 46
+   }
+  ]
+ },
+ "labvedo-onyx-4": {
+  "w": 1536,
+  "h": 1024,
+  "ar": 1.5,
+  "files": [
+   {
+    "f": "labvedo-onyx-4.webp",
+    "w": 1536,
+    "h": 1024,
+    "kb": 185
+   },
+   {
+    "f": "labvedo-onyx-4-800.webp",
+    "w": 800,
+    "h": 533,
+    "kb": 54
+   }
+  ]
  }
 }

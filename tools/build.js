@@ -16,7 +16,7 @@ const ICONS = (function () {
 })();
 const LINE = ICONS.GWK_ICONS_LINE;
 const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'media/kepek-meta.json'), 'utf8'));
-const V = '24'; // cache-bust: iterációnként léptetni
+const V = '27'; // cache-bust: iterációnként léptetni
 
 const HU = I.hu;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -70,9 +70,9 @@ function head(o) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(tx(o.titleKey))}</title>
 ${o.descKey ? `<meta name="description" content="${esc(tx(o.descKey))}">` : ''}
-<meta name="theme-color" content="#F7F2EA">
+<meta name="theme-color" content="#15100D">
 <meta property="og:title" content="${esc(tx(o.titleKey))}">
-<meta property="og:image" content="{B}media/hangulat/lo-hero-m-1200.webp">
+<meta property="og:image" content="{B}media/hangulat/hero-diak-1-1200.webp">
 <link rel="icon" href="{B}media/logo/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="{B}media/logo/apple-touch-icon.png">
 <script>document.documentElement.classList.add('js');window.GWK_BASE='{B}';try{if(localStorage.getItem('${C.storageKeys.lang}')==='en'){document.documentElement.classList.add('i18n-wait');setTimeout(function(){document.documentElement.classList.remove('i18n-wait')},1400)}}catch(e){}</script>
@@ -95,7 +95,7 @@ function header(active) {
     <div class="lang" role="group" aria-label="Nyelv / Language"><button type="button" data-lang="hu" aria-pressed="true" lang="hu">HU</button><button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button></div>
   </div>
   <nav class="nav" aria-label="Fő menü">
-    <a class="nav__brand" href="{B}index.html" data-i18n-attr="aria-label:nav.home" aria-label="${esc(tx('nav.home'))}"><img src="{B}media/logo/logo-felirat-sotet-480.webp" width="480" height="273" alt="GWK Horse"></a>
+    <a class="nav__brand" href="{B}index.html" data-i18n-attr="aria-label:nav.home" aria-label="${esc(tx('nav.home'))}"><img src="{B}media/logo/logo-felirat-480.webp" width="480" height="273" alt="GWK Horse"></a>
     <div class="nav__links">${a}</div>
     <div class="nav__act">
       <button type="button" class="ibtn" data-open="search" data-i18n-attr="aria-label:nav.search" aria-label="${esc(tx('nav.search'))}">${ico('magnifying-glass')}</button>
@@ -130,9 +130,9 @@ function footer(o) {
   const prods = D.PRODUCTS.map(p => `<li><a href="{B}${p.page}">${pType(p)}</a></li>`).join('');
   return `
 <footer class="foot">
-  <div class="wrap">${o.noSub ? '' : subscribe({ cls: 'sub--foot', id: 'subF' })}
+  <div class="wrap">${o.noSub ? '' : subscribe({ cls: 'sub--foot', id: 'subF', k: 'subF' })}
     <div class="foot__grid">
-      <div class="foot__brand"><img src="{B}media/logo/logo-kor-sotet-400.webp" width="400" height="400" alt="GWK Horse" loading="lazy"><p data-i18n="foot.p">${tx('foot.p')}</p>${social('foot__soc')}</div>
+      <div class="foot__brand"><img src="{B}media/logo/logo-felirat-480.webp" width="480" height="273" alt="GWK Horse" loading="lazy"><p data-i18n="foot.p">${tx('foot.p')}</p>${social('foot__soc')}</div>
       <div><h2 data-i18n="foot.shop">${tx('foot.shop')}</h2><ul>${prods}</ul></div>
       <div><h2 data-i18n="foot.brand">${tx('foot.brand')}</h2><ul>
         <li><a href="{B}galeria.html" data-i18n="nav.gallery">${tx('nav.gallery')}</a></li>
@@ -159,13 +159,13 @@ function social(cls) {
 }
 /* feliratkozás új termékre (Web3Forms, js/subscribe.js). A tárgy a termék magyar neve. */
 function subscribe(o) {
-  const id = o.id;
+  const id = o.id, k = o.k || 'sub', ek = o.k ? o.k + '.email' : 'sub.email', bk = o.k ? o.k + '.btn' : 'sub.btn';
   return `
 <section class="sub ${o.cls}" aria-labelledby="${id}H">
-  <div class="sub__txt"><h2 class="sub__h" id="${id}H" data-i18n="sub.h">${tx('sub.h')}</h2><p class="sub__p" data-i18n="sub.p">${tx('sub.p')}</p></div>
+  <div class="sub__txt"><h2 class="sub__h" id="${id}H" data-i18n="${k}.h">${tx(k + '.h')}</h2><p class="sub__p" data-i18n="${k}.p">${tx(k + '.p')}</p></div>
   <form class="sub__form" id="${id}" data-sub="${esc(o.product || '')}" novalidate>
-    <div class="sub__row"><div class="sub__fld"><label for="${id}Mail" class="sr-only" data-i18n="sub.email">${tx('sub.email')}</label><input id="${id}Mail" name="email" type="email" autocomplete="email" required data-i18n-attr="placeholder:sub.email" placeholder="${esc(tx('sub.email'))}"></div>
-      <button class="btn sub__btn" type="submit"><span data-i18n="sub.btn">${tx('sub.btn')}</span>${ico('arrow-right')}</button></div>
+    <div class="sub__row"><div class="sub__fld"><label for="${id}Mail" class="sr-only" data-i18n="${ek}">${tx(ek)}</label><input id="${id}Mail" name="email" type="email" autocomplete="email" required data-i18n-attr="placeholder:${ek}" placeholder="${esc(tx(ek))}"></div>
+      <button class="btn sub__btn" type="submit"><span data-i18n="${bk}">${tx(bk)}</span>${ico('arrow-right')}</button></div>
     <label class="chk sub__chk"><input type="checkbox" name="consent" required><span data-i18n-html="sub.consent">${tx('sub.consent', { B: '{B}' })}</span></label>
     <input type="checkbox" name="botcheck" class="sub__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <p class="sub__msg" role="status" aria-live="polite"></p>
@@ -200,86 +200,86 @@ function page(o) {
   return head(o) + header(o.active) + `\n<main id="main">\n${o.main}\n</main>` + (o.noFooter ? '' : footer(o)) + overlays() + '\n' + scripts(o.js);
 }
 
-/* ---------------- FŐOLDAL (egyszerűbb változat, Krisztina 2026-10-16 referenciája szerint) ----------------
-   Első képernyő: hero (ló kantárral + szöveges panel) és alatta a kör alakú kategória-sor, együtt pontosan egy képernyő.
-   Alatta: érték-sáv, Evening Star kollekció-blokk, bemutatkozás. */
-/* Hero-kép (v2, 2026-10-19): Pexels 6848299 (Alexas Fotos, Pexels-licenc). A fotó bal oldalon, a ló feje egészben,
-   jobbra a fotó szélének elmosott színmezője, ez megy a krém áttűnés alá (Claude tesztelés\gwk-atdolgozas-2026-10-19\hero-v2\hero-v2-kep.py).
-   Desztopon a kép a teljes hero-szélesség, magasság szerint cover, balra horgonyozva: kirajzolt szélessége kb. 4,4 × a hero magassága. */
-/* Hero v4 (2026-10-21, David: „a jobb oldalát nem kell elhomályosítani”): egyetlen valódi fotó, elmosás és tükrözés
-   nélkül, Pexels 13340063 (sötét pej ló aranyórában). Asztalon a teljes fotó cover, balra horgonyozva, a szöveg a fotó
-   saját sötét, nyugodt jobb oldalán; mobilon 4:5 kivágás a fejre (kor-1021\hero-v4-kep.py). */
-const HERO_IMG = { w: 3200, h: 2133, sizes: 'max(100vw, 150vh)', mw: 1600, mh: 1904, mSizes: '100vw' };
-const CATS = ['nyeregalatet', 'fulvedo', 'kantar', 'labvedo', 'pataharang'];
-const VALUES = [['gem', 'val.1'], ['heart', 'val.2'], ['shield-check', 'val.3'], ['infinity', 'val.4']];
+/* ---------------- FŐOLDAL (Krisztina 2026-11-04-i végleges terve szerint) ----------------
+   Sorrend a tervből: hero-képváltó (3 kép, a szöveg a képek nyugodt bal oldalán), termékkategóriák, Evening Star
+   kollekció-sáv, A GWK Horse története sáv, érték-sor, és a lábléc tetején a „Maradj velünk!” feliratkozó sáv.
+   A tervekbe égetett szöveg nem kép, hanem valódi HTML: a képekről a felirat el van távolítva. */
+// [fájlnév, alt-kulcs] · a 2:1-es képek natív szélessége 1774 px, ennél nagyobbra nem nagyítjuk (a hero dobozát max. 1774 px)
+const SLIDES = [['hero-diak-1', 'hero.alt1'], ['hero-diak-2', 'hero.alt2'], ['hero-diak-3', 'hero.alt3']];
+// a terv 4 kategóriát mutat (pataharang nélkül); a pataharang a boltban és a menüben elérhető marad
+const CATS = ['nyeregalatet', 'fulvedo', 'kantar', 'labvedo'];
+const CAT_IMG = { nyeregalatet: 'termek/nyereg-onyx-2', fulvedo: 'termek/fulvedo-onyx-2', kantar: 'termek/kantar-onyx-2', labvedo: 'termek/labvedo-onyx-4' };
+const VALUES = [['gem', 'val.n1'], ['leaf', 'val.n2'], ['infinity', 'val.n3'], ['heart', 'val.n4']];
+function metaImg(rel) {
+  const name = path.basename(rel), m = META[name];
+  if (!m) throw new Error('Hiányzó kép-meta: ' + name);
+  const small = m.files.find(x => /-800\.webp$/.test(x.f));
+  return { src: 'media/' + rel + '.webp', small: small ? 'media/' + path.dirname(rel) + '/' + small.f : null, w: m.w, h: m.h };
+}
 function home() {
+  const slides = SLIDES.map(([f, alt], i) => {
+    const base = `{B}media/hangulat/${f}`;
+    return `<figure class="hs__s hs__s--${i + 1}${i === 0 ? ' is-on' : ''}" data-i="${i}"${i ? ' aria-hidden="true"' : ''}><img src="${base}-1200.webp" srcset="${base}-800.webp 800w, ${base}-1200.webp 1200w, ${base}.webp 1774w" sizes="(max-width:960px) 200vw, min(100vw, 1774px)" width="1774" height="887" alt="${esc(tx(alt))}" data-i18n-attr="alt:${alt}"${i === 0 ? ' fetchpriority="high"' : ' fetchpriority="low"'}></figure>`;
+  }).join('\n      ');
+  const dots = SLIDES.map((s, i) => `<button type="button" class="hs__dot" data-hs="${i}" aria-current="${i === 0}" aria-label="${esc(tx('hero.dot', { i: i + 1 }))}"></button>`).join('');
   const cats = CATS.map(id => {
-    const p = D.byId(id);
-    return `<li><a class="cat" href="{B}bolt.html?tipus=${id}"><span class="cat__img"><img src="{B}media/kor/${id}.webp" width="480" height="480" alt="" loading="lazy"></span><span class="cat__name">${pType(p)}</span></a></li>`;
+    const p = D.byId(id), im = metaImg(CAT_IMG[id]);
+    // a termékfotó egészben, natív arányban (3:2), vágás nélkül
+    return `<li><a class="cat2" href="{B}bolt.html?tipus=${id}"><span class="cat2__img"><img src="{B}${im.small}" srcset="{B}${im.small} 800w, {B}${im.src} ${im.w}w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 24vw" width="${im.w}" height="${im.h}" alt="" loading="lazy"></span><span class="cat2__n"><span data-i18n="cat.${id}">${tx('cat.' + id)}</span>${ico('caret-down', 'cat2__i')}</span></a></li>`;
   }).join('');
   const vals = VALUES.map(([ic, k]) => `<li class="val">${icoLine(ic)}<p><b data-i18n="${k}a">${tx(k + 'a')}</b><span data-i18n="${k}b">${tx(k + 'b')}</span></p></li>`).join('');
-  const szett = META['szett-rose'] || { w: 1280, h: 960 };
+  const es = META['es-banner'], sb = META['tortenet-banner'];
   const main = `
 <section class="top" id="hero" aria-labelledby="heroH">
-  <div class="hero">
-    <figure class="hero__img"><picture><source media="(max-width:960px), (max-aspect-ratio:13/10)" srcset="{B}media/hangulat/lo-hero-v4-m-800.webp 800w, {B}media/hangulat/lo-hero-v4-m-1200.webp 1200w, {B}media/hangulat/lo-hero-v4-m-1600.webp 1600w" sizes="${HERO_IMG.mSizes}" width="${HERO_IMG.mw}" height="${HERO_IMG.mh}"><img src="{B}media/hangulat/lo-hero-v4-2400.webp" srcset="{B}media/hangulat/lo-hero-v4-1600.webp 1600w, {B}media/hangulat/lo-hero-v4-2400.webp 2400w, {B}media/hangulat/lo-hero-v4-3200.webp 3200w" sizes="${HERO_IMG.sizes}" width="${HERO_IMG.w}" height="${HERO_IMG.h}" alt="${esc(tx('hero.alt'))}" data-i18n-attr="alt:hero.alt" fetchpriority="high"></picture></figure>
-    <div class="hero__panel" data-on-photo>
-      <p class="label hero__label" data-i18n="hero.label">${tx('hero.label')}</p>
-      <h1 class="hero__title" id="heroH"><span class="ln"><span data-i18n="hero.l1">${tx('hero.l1')}</span></span><span class="ln"><span><em data-i18n="hero.l2">${tx('hero.l2')}</em></span></span></h1>
-      <p class="hero__tri"><span data-i18n="hero.t1">${tx('hero.t1')}</span><span data-i18n="hero.t2">${tx('hero.t2')}</span><span data-i18n="hero.t3">${tx('hero.t3')}</span></p>
-      <p class="hero__more" data-i18n="hero.more">${tx('hero.more')}</p>
-      <a class="btn btn--solid hero__btn" href="{B}galeria.html"><span data-i18n="hero.cta">${tx('hero.cta')}</span>${ico('arrow-right')}</a>
+  <div class="hs" id="hs" aria-roledescription="carousel" aria-label="${esc(tx('hero.slides'))}" data-i18n-attr="aria-label:hero.slides">
+    <div class="hs__track">
+      ${slides}
     </div>
+    <div class="hs__panel" data-on-photo>
+      <img class="hs__logo" src="{B}media/logo/logo-felirat-480.webp" width="480" height="273" alt="" aria-hidden="true">
+      <h1 class="hs__h" id="heroH" data-i18n="hero.claim">${tx('hero.claim')}</h1>
+      <p class="hs__tri"><span data-i18n="hero.t1">${tx('hero.t1')}</span><span data-i18n="hero.t2">${tx('hero.t2')}</span><span data-i18n="hero.t3">${tx('hero.t3')}</span></p>
+      <a class="btn btn--cream hs__btn" href="{B}bolt.html"><span data-i18n="hero.shop">${tx('hero.shop')}</span>${ico('arrow-right')}</a>
+    </div>
+    <button type="button" class="hs__nav hs__nav--p" data-hs="p" data-i18n-attr="aria-label:hero.prev" aria-label="${esc(tx('hero.prev'))}">${ico('arrow-left')}</button>
+    <button type="button" class="hs__nav hs__nav--n" data-hs="n" data-i18n-attr="aria-label:hero.next" aria-label="${esc(tx('hero.next'))}">${ico('arrow-right')}</button>
+    <div class="hs__dots">${dots}</div>
   </div>
 </section>
-<nav class="cats" aria-label="${esc(tx('cats.label'))}" data-i18n-attr="aria-label:cats.label"><ul class="cats__list wrap">${cats}</ul></nav>
+
+<section class="cats2" aria-labelledby="catsH">
+  <div class="wrap">
+    <h2 class="orn-h" id="catsH"><span data-i18n="cats.h">${tx('cats.h')}</span></h2>
+    <ul class="cats2__list">${cats}</ul>
+  </div>
+</section>
+
+<section class="es2" aria-labelledby="esH">
+  <figure class="es2__img"><img src="{B}media/kollekcio/es-banner.webp" srcset="{B}media/kollekcio/es-banner-600.webp 600w, {B}media/kollekcio/es-banner.webp 860w" sizes="(max-width:960px) 100vw, 860px" width="${es.w}" height="${es.h}" alt="${esc(tx('es.alt2'))}" data-i18n-attr="alt:es.alt2" loading="lazy"></figure>
+  <div class="es2__txt">
+    <p class="label es2__k" data-i18n="es.label" data-reveal>${tx('es.label')}</p>
+    <h2 class="es2__h" id="esH" data-reveal><em>Evening Star</em></h2>
+    <p class="es2__p" data-i18n="es.p2" data-reveal>${tx('es.p2')}</p>
+    <ul class="es2__sw" data-reveal>${D.COLOR_ORDER.map(c => `<li><i class="sw sw--${c} sw--ball" aria-hidden="true"></i><span data-i18n="color.${c}">${tx('color.' + c)}</span></li>`).join('')}</ul>
+    <a class="btn btn--solid es2__btn" href="{B}kollekcio.html" data-reveal="2"><span data-i18n="es.cta">${tx('es.cta')}</span>${ico('arrow-right')}</a>
+  </div>
+</section>
+
+<section class="sb" aria-labelledby="sbH">
+  <figure class="sb__img"><img src="{B}media/hangulat/tortenet-banner-1400.webp" srcset="{B}media/hangulat/tortenet-banner-900.webp 900w, {B}media/hangulat/tortenet-banner-1400.webp 1400w, {B}media/hangulat/tortenet-banner.webp 2172w" sizes="(max-width:1100px) 200vw, 100vw" width="${sb.w}" height="${sb.h}" alt="${esc(tx('sb.alt'))}" data-i18n-attr="alt:sb.alt" loading="lazy"></figure>
+  <div class="sb__txt" data-on-photo>
+    <h2 class="sb__h" id="sbH" data-i18n="sb.h">${tx('sb.h')}</h2>
+    <p class="sb__orn" aria-hidden="true"><i></i>${icoLine('heart')}<i></i></p>
+    <p class="sb__p"><span data-i18n="sb.p1">${tx('sb.p1')}</span><span data-i18n="sb.p2">${tx('sb.p2')}</span><span data-i18n="sb.p3">${tx('sb.p3')}</span></p>
+    <a class="btn btn--goldline sb__btn" href="{B}tortenet.html"><span data-i18n="sb.btn">${tx('sb.btn')}</span>${ico('arrow-right')}</a>
+  </div>
+</section>
 
 <section class="vals" aria-label="${esc(tx('vals.label'))}" data-i18n-attr="aria-label:vals.label">
   <ul class="vals__list wrap">${vals}</ul>
-</section>
-
-<section class="es" aria-labelledby="esH">
-  <div class="es__in wrap">
-    <div class="es__txt">
-      <p class="label" data-i18n="es.label" data-reveal>${tx('es.label')}</p>
-      <h2 class="es__h" id="esH" data-reveal>Evening <em>Star</em></h2>
-      <p class="es__p" data-i18n="es.p" data-reveal>${tx('es.p')}</p>
-      <p class="es__sw" data-reveal>${D.COLOR_ORDER.map(c => `<span>${sw(c)}<span data-i18n="color.${c}">${tx('color.' + c)}</span></span>`).join('')}</p>
-      <a class="btn btn--solid" href="{B}bolt.html" data-reveal="2"><span data-i18n="es.btn">${tx('es.btn')}</span>${ico('arrow-right')}</a>
-    </div>
-    <figure class="es__img" data-reveal><img src="{B}media/kollekcio/szett-rose.webp" srcset="{B}media/kollekcio/szett-rose-800.webp 800w, {B}media/kollekcio/szett-rose.webp 1280w" sizes="(max-width:960px) 92vw, 54vw" width="${szett.w}" height="${szett.h}" alt="${esc(tx('es.alt'))}" data-i18n-attr="alt:es.alt" loading="lazy"></figure>
-  </div>
-</section>
-
-<section class="duo" aria-label="${esc(tx('duo.label'))}" data-i18n-attr="aria-label:duo.label">
-  <div class="duo__in">
-  <article class="duo__p">
-    <figure class="duo__img duo__img--det"><img src="{B}media/kollekcio/gwk-reszlet-528.webp" width="528" height="440" alt="${esc(tx('duo.d.alt'))}" data-i18n-attr="alt:duo.d.alt" loading="lazy"></figure>
-    <div class="duo__txt">
-      <h2 class="duo__h" data-i18n="duo.d.h">${tx('duo.d.h')}</h2>
-      <a class="tlink duo__a" href="{B}kollekcio.html"><span data-i18n="duo.d.a">${tx('duo.d.a')}</span>${ico('arrow-right')}</a>
-    </div>
-  </article>
-  <article class="duo__p">
-    <figure class="duo__img duo__img--lo"><img src="{B}media/hangulat/rolunk-lo-fekvo-1600.webp" srcset="{B}media/hangulat/rolunk-lo-fekvo-1000.webp 1000w, {B}media/hangulat/rolunk-lo-fekvo-1600.webp 1600w, {B}media/hangulat/rolunk-lo-fekvo-2200.webp 2200w" sizes="(max-width:960px) 140vw, 1000px" width="2200" height="1466" alt="${esc(tx('duo.g.alt'))}" data-i18n-attr="alt:duo.g.alt" loading="lazy"></figure>
-    <div class="duo__txt">
-      <h2 class="duo__h" data-i18n="duo.g.l">${tx('duo.g.l')}</h2>
-      <blockquote class="duo__q"><p>„<span data-i18n="story.q">${tx('story.q')}</span>”</p><cite data-i18n="story.cite">${tx('story.cite')}</cite></blockquote>
-      <a class="tlink duo__a" href="{B}tortenet.html"><span data-i18n="story.a">${tx('story.a')}</span>${ico('arrow-right')}</a>
-    </div>
-  </article>
-  </div>
-</section>
-
-<section class="moment" aria-labelledby="momH">
-  <figure class="moment__img"><img src="{B}media/hangulat/pillanat-1800.webp" srcset="{B}media/hangulat/pillanat-1200.webp 1200w, {B}media/hangulat/pillanat-1800.webp 1800w, {B}media/hangulat/pillanat-2600.webp 2600w" sizes="100vw" width="2600" height="1733" alt="${esc(tx('mom.alt'))}" data-i18n-attr="alt:mom.alt" loading="lazy"></figure>
-  <div class="moment__in wrap">
-    <p class="moment__t" id="momH" data-i18n="mom.t">${tx('mom.t')}</p>
-    <a class="btn btn--cream moment__btn" href="{B}galeria.html"><span data-i18n="mom.btn">${tx('mom.btn')}</span>${ico('arrow-right')}</a>
-  </div>
 </section>`;
   return page({ page: 'home', titleKey: 'home.title', descKey: 'home.desc', active: '', main, js: ['js/home.js'],
-    preload: `<link rel="preload" as="image" media="(min-width:961px) and (min-aspect-ratio:13/10)" href="{B}media/hangulat/lo-hero-v4-2400.webp" imagesrcset="{B}media/hangulat/lo-hero-v4-1600.webp 1600w, {B}media/hangulat/lo-hero-v4-2400.webp 2400w, {B}media/hangulat/lo-hero-v4-3200.webp 3200w" imagesizes="${HERO_IMG.sizes}">\n<link rel="preload" as="image" media="(max-width:960px), (max-aspect-ratio:13/10)" href="{B}media/hangulat/lo-hero-v4-m-1200.webp" imagesrcset="{B}media/hangulat/lo-hero-v4-m-800.webp 800w, {B}media/hangulat/lo-hero-v4-m-1200.webp 1200w, {B}media/hangulat/lo-hero-v4-m-1600.webp 1600w" imagesizes="${HERO_IMG.mSizes}">` });
+    preload: `<link rel="preload" as="image" href="{B}media/hangulat/hero-diak-1-1200.webp" imagesrcset="{B}media/hangulat/hero-diak-1-800.webp 800w, {B}media/hangulat/hero-diak-1-1200.webp 1200w, {B}media/hangulat/hero-diak-1.webp 1774w" imagesizes="(max-width:960px) 200vw, min(100vw, 1774px)">` });
 }
 
 /* ---------------- BOLT ---------------- */
@@ -362,7 +362,9 @@ const GAL = [
   ['termek/nyereg-onyx', 'nyeregalatet', 'onyx'], ['termek/fulvedo-pearl-2', 'fulvedo', 'pearl'], ['termek/pataharang-rose', 'pataharang', 'rose'],
   ['termek/labvedo-onyx-2', 'labvedo', 'onyx'], ['termek/pataharang-pearl', 'pataharang', 'pearl'], ['termek/labvedo-rose', 'labvedo', 'rose'],
   ['termek/fulvedo-onyx', 'fulvedo', 'onyx'], ['termek/nyereg-rose', 'nyeregalatet', 'rose'], ['termek/pataharang-onyx', 'pataharang', 'onyx'],
-  ['termek/pataharang-rose-2', 'pataharang', 'rose'], ['termek/labvedo-onyx-3', 'labvedo', 'onyx'], ['termek/pataharang-onyx-2', 'pataharang', 'onyx']
+  ['termek/pataharang-rose-2', 'pataharang', 'rose'], ['termek/labvedo-onyx-3', 'labvedo', 'onyx'], ['termek/pataharang-onyx-2', 'pataharang', 'onyx'],
+  // Krisztina 2026-11-04-i termékfotói
+  ['termek/fulvedo-onyx-2', 'fulvedo', 'onyx'], ['termek/kantar-onyx-2', 'kantar', 'onyx'], ['termek/labvedo-onyx-4', 'labvedo', 'onyx'], ['termek/nyereg-onyx-2', 'nyeregalatet', 'onyx']
 ];
 function gallery() {
   const seen = new Set(), ars = [];
