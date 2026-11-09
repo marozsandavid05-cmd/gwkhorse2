@@ -16,7 +16,7 @@ const ICONS = (function () {
 })();
 const LINE = ICONS.GWK_ICONS_LINE;
 const META = JSON.parse(fs.readFileSync(path.join(ROOT, 'media/kepek-meta.json'), 'utf8'));
-const V = '27'; // cache-bust: iterációnként léptetni
+const V = '28'; // cache-bust: iterációnként léptetni
 
 const HU = I.hu;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -49,12 +49,15 @@ const pName = p => `<span data-p="${p.id}" data-pf="name">${esc(p.name.hu)}</spa
 const pType = p => `<span data-p="${p.id}" data-pf="type">${esc(p.type.hu)}</span>`;
 const priceEl = (p, cls = '') => `<span class="${cls}" data-price="${p.price}" data-per="${p.unit}">${money(p.price)}${p.unit === 'par' ? ' <small data-i18n="per.par">' + tx('per.par') + '</small>' : ''}</span>`;
 const sw = c => `<i class="sw sw--${c}" aria-hidden="true"></i>`;
+// a szín látható neve (a kulcs, pl. onyx, csak azonosító): nagybetűvel önállóan, kisbetűvel mondatban
+const cName = c => tx('color.' + c);
+const cLow = c => cName(c).toLowerCase();
 
 function card(p, c, sizes) {
   const arr = p.colors[c] || [];
   const im = arr[0] || null, alt2 = arr[1] || null;
-  const alt = `${p.name.hu}, ${c}`;
-  const search = [p.name.hu, p.name.en, p.type.hu, p.type.en, c].join(' ').toLowerCase();
+  const alt = `${p.name.hu}, ${cLow(c)}`;
+  const search = [p.name.hu, p.name.en, p.type.hu, p.type.en, c, I.hu['color.' + c], I.en['color.' + c]].join(' ').toLowerCase();
   return `<a class="card" href="{B}${p.page}?szin=${c}" data-type="${p.id}" data-color="${c}" data-search="${esc(search)}" data-view="${esc(tx('idx.view'))}" data-reveal>` +
     vit(im, alt, sizes, { alt2 }) +
     `<div class="card__meta"><span class="card__name">${pName(p)}</span>${priceEl(p, 'card__price')}` +
@@ -176,7 +179,7 @@ function subscribe(o) {
 /* „Szólj, ha újra van” (termékoldal, elfogyott színnél a Kosárba helyén). A js/subscribe.js küldi (data-notify).
    Látszólagos: Web3Forms-levél a boltnak; a valódi háttér (feliratkozók adatbázisa, automatikus levél) a backenddel jön. */
 function notify(p, c, out) {
-  const C0 = c[0].toUpperCase() + c.slice(1);
+  const C0 = cLow(c);
   return `<section class="notify" id="notify" aria-labelledby="notifyH"${out ? '' : ' hidden'}>
       <h2 class="notify__h" id="notifyH" data-i18n="notify.h">${tx('notify.h')}</h2>
       <p class="notify__p" id="notifyP">${esc(tx('notify.p', { p: p.name.hu, c: C0 }))}</p>
@@ -310,8 +313,8 @@ function product(p) {
   const cs = colorsOf(p);
   const c0 = cs[0];
   const gal = (p.colors[c0] || []).map((im, i) =>
-    `<figure>${`<img src="{B}${im.src}" ${im.small ? `srcset="{B}${im.small} 800w, {B}${im.src} ${im.w}w" sizes="(max-width:960px) 86vw, 56vw"` : ''} width="${im.w}" height="${im.h}" alt="${esc(p.name.hu)}, ${c0}, ${i + 1}. fotó"${i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'}>`}</figure>`).join('');
-  const cap = c => c[0].toUpperCase() + c.slice(1);
+    `<figure>${`<img src="{B}${im.src}" ${im.small ? `srcset="{B}${im.small} 800w, {B}${im.src} ${im.w}w" sizes="(max-width:960px) 86vw, 56vw"` : ''} width="${im.w}" height="${im.h}" alt="${esc(p.name.hu)}, ${cLow(c0)}, ${i + 1}. fotó"${i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'}>`}</figure>`).join('');
+  const cap = cName;
   const cbtns = cs.map((c, i) => `<button type="button" class="cbtn${D.isOut(p, c) ? ' is-out' : ''}" data-color="${c}" aria-pressed="${i === 0}" aria-label="${D.isOut(p, c) ? esc(tx('stock.outAria', { c: cap(c) })) : cap(c)}">${sw(c)}</button>`).join('');
   const out0 = D.isOut(p, c0);
   const sbtns = p.sizes.map((s, i) => `<button type="button" class="sbtn" data-size="${s}" aria-pressed="${i === 0}" data-i18n="size.${s}">${tx('size.' + s)}</button>`).join('');
@@ -325,7 +328,7 @@ function product(p) {
     <h1 class="pdp__name"><span data-p="${p.id}" data-pf="name">${esc(p.name.hu)}</span></h1>
     <p class="pdp__price">${priceEl(p)}</p>
     <p class="pdp__lead" data-p="${p.id}" data-pf="lead">${esc(p.lead.hu)}</p>
-    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">${tx('pdp.color')}</span><b id="colorName">${c0[0].toUpperCase() + c0.slice(1)}</b><span class="opt__out" id="colorOut" data-i18n="stock.out"${out0 ? '' : ' hidden'}>${tx('stock.out')}</span></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.color'))}">${cbtns}</div>
+    <div class="opt"><p class="opt__l"><span data-i18n="pdp.color">${tx('pdp.color')}</span><b id="colorName">${cName(c0)}</b><span class="opt__out" id="colorOut" data-i18n="stock.out"${out0 ? '' : ' hidden'}>${tx('stock.out')}</span></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.color'))}">${cbtns}</div>
       <p class="pdp__soon" id="soon" hidden data-i18n="pdp.soon">${tx('pdp.soon')}</p></div>
     <div class="opt"><p class="opt__l"><span data-i18n="pdp.size">${tx('pdp.size')}</span></p><div class="opt__row" role="group" aria-label="${esc(tx('pdp.size'))}">${sbtns}</div></div>
     <div class="buy" id="buy"${out0 ? ' hidden' : ''}>
@@ -374,7 +377,7 @@ function gallery() {
     if (!m) throw new Error('Galéria: hiányzó kép-meta ' + name);
     const small = m.files.find(x => /-800\.webp$/.test(x.f));
     const p = id === 'szett' ? null : D.byId(id);
-    const capHu = p ? `${p.type.hu}, ${c[0].toUpperCase() + c.slice(1)}` : 'Evening Star szett, Rose';
+    const capHu = p ? `${p.type.hu}, ${cLow(c)}` : 'Evening Star szett, rózsaszín';
     const cap = p ? `${pType(p)}<span class="gal__c">${sw(c)}<span data-i18n="color.${c}">${tx('color.' + c)}</span></span>` : `<span data-i18n="gal.set">${tx('gal.set')}</span><span class="gal__c">${sw('rose')}<span data-i18n="color.rose">${tx('color.rose')}</span></span>`;
     const href = p ? `{B}${p.page}?szin=${c}` : '{B}kollekcio.html';
     const ar = (m.w / m.h).toFixed(4);
@@ -408,7 +411,7 @@ function collection() {
 <section class="kc-cover wrap grid12" aria-labelledby="kcH">
   <header class="kc-cover__head"><p class="label" data-i18n="kc.kicker">${tx('kc.kicker')}</p><h1 id="kcH">Evening <em>Star</em></h1></header>
   <div class="kc-cover__a"><p class="lead" data-i18n="kc.lead">${tx('kc.lead')}</p><div class="kc-cover__shades"><p class="kc-cover__bh" data-i18n="kc.colors">${tx('kc.colors')}</p><p class="kc-cover__sw">${D.COLOR_ORDER.map(c => `<span>${sw(c)}<span data-i18n="color.${c}">${tx('color.' + c)}</span></span>`).join('')}</p></div></div>
-  <figure class="kc-cover__img"><img src="{B}media/kollekcio/kollekcio-nyereg.webp" srcset="{B}media/kollekcio/kollekcio-nyereg-800.webp 800w, {B}media/kollekcio/kollekcio-nyereg.webp 1536w" sizes="(max-width:960px) 92vw, 52vw" width="1536" height="1024" alt="Evening Star nyeregalátétek Onyx, Pearl és Rose színben" fetchpriority="high"></figure>
+  <figure class="kc-cover__img"><img src="{B}media/kollekcio/kollekcio-nyereg.webp" srcset="{B}media/kollekcio/kollekcio-nyereg-800.webp 800w, {B}media/kollekcio/kollekcio-nyereg.webp 1536w" sizes="(max-width:960px) 92vw, 52vw" width="1536" height="1024" alt="Evening Star nyeregalátétek fekete, fehér és rózsaszín színben" fetchpriority="high"></figure>
   <div class="kc-cover__b"><nav aria-label="${esc(tx('kc.list'))}" data-i18n-attr="aria-label:kc.list"><p class="kc-cover__bh" data-i18n="kc.list">${tx('kc.list')}</p>${list}</nav>
     <a class="btn btn--solid" href="{B}bolt.html"><span data-i18n="kc.btn">${tx('kc.btn')}</span>${ico('arrow-right')}</a></div>
 </section>`;

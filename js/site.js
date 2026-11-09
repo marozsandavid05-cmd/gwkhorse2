@@ -30,6 +30,9 @@
     return fmt(s, v);
   };
   GWK.cap = function (c) { return c.charAt(0).toUpperCase() + c.slice(1); };
+  // a szín látható neve az aktuális nyelven (a kulcs, pl. onyx, csak azonosító); mondatban kisbetűvel
+  GWK.cname = function (c) { return GWK.t('color.' + c); };
+  GWK.cnameLow = function (c) { return GWK.cname(c).toLowerCase(); };
   GWK.icon = function (n) {
     return '<svg class="icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false">' + (ICONS[n] || []).map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>';
   };
@@ -127,7 +130,7 @@
     return '<div class="vit ' + (cls || '') + '"><img class="vit__bg" src="' + src + '" alt="" aria-hidden="true" width="' + im.w + '" height="' + im.h + '"><img class="vit__img" src="' + src + '" alt="" width="' + im.w + '" height="' + im.h + '"></div>';
   };
   GWK.lineName = function (x) { var p = D.byId(x.id); return p ? (p.name[lang] || p.name.hu) : x.id; };
-  GWK.lineSub = function (x) { return GWK.cap(x.color) + ' \u00b7 ' + GWK.t('size.' + x.size); };
+  GWK.lineSub = function (x) { return GWK.cname(x.color) + ' \u00b7 ' + GWK.t('size.' + x.size); };
 
   function renderCart() {
     var n = cart.count();
@@ -212,14 +215,14 @@
     D.PRODUCTS.forEach(function (p) {
       D.COLOR_ORDER.forEach(function (c) {
         if (!(c in p.colors)) return;
-        var hay = norm([p.name.hu, p.name.en, p.type.hu, p.type.en, c, 'evening star gwk'].join(' '));
+        var hay = norm([p.name.hu, p.name.en, p.type.hu, p.type.en, c, I.hu['color.' + c], I.en['color.' + c], 'evening star gwk'].join(' '));
         var ok = !q || q.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; });
         if (ok) res.push({ p: p, c: c });
       });
     });
     if (!q) res = D.PRODUCTS.map(function (p) { return { p: p, c: D.COLOR_ORDER.filter(function (c) { return c in p.colors; })[0] }; });
     out.innerHTML = res.length ? res.slice(0, 8).map(function (r) {
-      return '<a href="' + B + r.p.page + '?szin=' + r.c + '">' + GWK.thumb(r.p, r.c) + '<span><b>' + GWK.esc(r.p.name[lang]) + '</b> <span class="muted">' + GWK.cap(r.c) + '</span></span><span>' + GWK.money(r.p.price) + '</span></a>';
+      return '<a href="' + B + r.p.page + '?szin=' + r.c + '">' + GWK.thumb(r.p, r.c) + '<span><b>' + GWK.esc(r.p.name[lang]) + '</b> <span class="muted">' + GWK.esc(GWK.cname(r.c)) + '</span></span><span>' + GWK.money(r.p.price) + '</span></a>';
     }).join('') : '<p class="srch__none">' + GWK.t('srch.none') + '</p>';
   }
   document.addEventListener('input', function (e) { if (e.target.id === 'srchIn') runSearch(); });

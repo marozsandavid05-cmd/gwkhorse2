@@ -22,7 +22,7 @@
         rose: [img('kantar-rose', 1402, 1122, true)]
       },
       // készlet színenként: elfogyott = true esetén a termékoldalon „Szólj, ha újra van” jön a Kosárba gomb helyén.
-      // BEMUTATÓ: a Rose kantár elfogyottnak jelölve. Élesben az adminból állítható.
+      // BEMUTATÓ: a rózsaszín kantár elfogyottnak jelölve. Élesben az adminból állítható.
       stock: { onyx: { elfogyott: false }, rose: { elfogyott: true } },
       name: { hu: 'Evening Star kantár', en: 'Evening Star Bridle' },
       type: { hu: 'Kantár', en: 'Bridle' },
@@ -128,13 +128,13 @@
         hu: [
           'A GWK Evening Star lábvédők az elegáns dizájnt, a kényelmes védelmet és a GWK jellegzetes stílusát ötvözik. Finom csillámos hatású felületük, puha plüss bélésük és anatómiailag kialakított, védelmet biztosító formájuk révén ideálisak a ló lábainak védelmére a mindennapi lovaglás és munka során.',
           'A biztonságos tépőzáras rögzítés lehetővé teszi az állítható, stabil illeszkedést, míg a puha plüss szegély további kényelmet biztosít a széleken.',
-          'Az Evening Star lábvédők Black, Pearl és Rose színekben érhetők el, és úgy terveztük őket, hogy tökéletesen harmonizáljanak a kollekció többi darabjával.',
+          'Az Evening Star lábvédők fekete, fehér és rózsaszín színben érhetők el, és úgy terveztük őket, hogy tökéletesen harmonizáljanak a kollekció többi darabjával.',
           'Elegáns védelem. Könnyed stílus. Ragyogásra tervezve.'
         ],
         en: [
           'The GWK Evening Star Brushing Boots combine elegant design, comfortable protection and the signature GWK style. Featuring a refined glitter-effect finish, soft plush lining and a contoured protective shape, they are designed to help protect the horse\u2019s legs during everyday riding and exercise.',
           'The secure hook-and-loop fastening allows for an adjustable and stable fit, while the soft plush trim provides additional comfort around the edges.',
-          'Available in Black, Pearl and Rose, the Evening Star Brushing Boots are designed to perfectly complement the other pieces of the collection.',
+          'Available in black, white and pink, the Evening Star Brushing Boots are designed to perfectly complement the other pieces of the collection.',
           'Elegant protection. Effortless style. Made to shine.'
         ]
       }
