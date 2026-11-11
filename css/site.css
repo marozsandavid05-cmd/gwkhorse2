@@ -448,6 +448,8 @@ body.nav-hidden{--stick:0px}
    a rácsúszó lap felfelé vetett lágy árnyéka adja a mélységet. */
 .st-cover{position:sticky;top:0;z-index:0;height:100svh;min-height:620px;padding-top:var(--hdr);background:#15100D;color:#FAEFE2;overflow:hidden;isolation:isolate}
 .st-cover ~ *{position:relative;z-index:1;background:var(--bg)}
+/* a max-szélességű (.wrap) rácsúszó szekció háttere is teljes szélességű, különben széles képernyőn kétoldalt kilátszik a ragadó nyitókép */
+.st-cover ~ .wrap::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);z-index:-1;background:var(--bg);pointer-events:none}
 .st-cover + .st-story{box-shadow:0 -28px 48px -24px rgba(20,12,6,.55)}
 /* a kép a fejléc alá is benyúlik (inset:0), így amikor a fejléc görgetéskor felcsúszik, a kép már ott van, nincs üres sáv és nincs ugrás */
 .st-cover__img{position:absolute;inset:0;z-index:-1;margin:0}
